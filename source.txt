@@ -1,3 +1,4 @@
+//Este comentario debe ser ignorador por el lexer
 fn main(){
   //Primer programa con rust
   let x=8;

@@ -4,17 +4,21 @@ import ply.lex as lex
 #rust
 #Agregue todas las palabras reservadas
 reserved = {
+  'let' : 'LET',
+  'mut' : 'MUT',
+  'const' : 'CONST',
   'for': 'FOR',
   'if': 'IF',
   'else': 'ELSE',
   'while': 'WHILE',
-  'let': 'LET',
   'static': 'STATIC',
   'as': 'AS',
   'break': 'BREAK',
   'fn': 'FN',
   'println': 'PRINTLN',
   'main': 'MAIN',
+  'return': 'RETURN',
+
 }
 #Agregue todos los tokens solicitados
 tokens = [
@@ -35,7 +39,7 @@ t_TIMES = r'\*'
 t_DIVIDE = r'/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
-t_RCOM = r'//'
+t_ignore_RCOM = r'\/\/.*'
 t_LCORCH = r'\{'
 t_RCORCH = r'\}'
 t_MACRO=r'!'
@@ -65,6 +69,8 @@ def t_error(t):
 #Construya el lexer
 lexer = lex.lex()
 #Lea el archivo source.txt y retorne los tokens
+print("---------------------------------------\n")
+print("---------A L G    # 1------------------\n")
 
 with open("source.txt", "r") as archivo:
   lexer.input(archivo.read())
