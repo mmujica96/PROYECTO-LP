@@ -1,0 +1,14 @@
+fn main(){
+  //Primer programa con rust
+  let x=8;
+  let y=9;
+  if(x<y){
+      println!("x es menor que y");
+  }else if(y<x){
+    println!("y es menor que x");
+  }else if(y==x){
+    println!("x e y son iguales");
+  }
+  println!("Fin del programa");
+
+}
