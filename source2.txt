@@ -1,0 +1,13 @@
+//Ejemplo 2
+fn main() {
+    let mut i = 1;
+
+    while i < 100 {
+        println!("{i}");
+        i *= 2;
+        if i == 64 {
+            println!("i es {i}, saliendo....");
+            break; // sale cuando `i` es 64.
+        }
+    }
+}

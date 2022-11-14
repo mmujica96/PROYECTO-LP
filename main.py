@@ -2,7 +2,7 @@ import ply.lex as lex
 
 import ply.lex as lex
 #rust
-#Agregue todas las palabras reservadas
+#Palabras reservadas
 reserved = {
   'let' : 'LET',
   'mut' : 'MUT',
@@ -18,12 +18,15 @@ reserved = {
   'println': 'PRINTLN',
   'main': 'MAIN',
   'return': 'RETURN',
+  'asyn': 'ASYN',
+  'away': 'AWAY',
+  'continue': 'CONTINUE',
 
 }
 #Agregue todos los tokens solicitados
 tokens = [
   'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'LPAREN', 'RPAREN', 'RCOM',
-  'LCORCH', 'RCORCH', 'ID','MACRO', 'LESS', 'GREAT', 'STRING', 'EQUAL'
+  'LCORCH', 'RCORCH', 'ID','MACRO', 'LESS', 'GREAT', 'STRING', 'EQUAL', 'PUNTO_COMA','FLOTANTE'
 ] + list(reserved.values())
 
 
@@ -47,10 +50,15 @@ t_LESS=r'\<'
 t_GREAT=r'\>'
 t_STRING=r'"'
 t_EQUAL=r'='
+t_PUNTO_COMA= r';'
 
 def t_NUMBER(t):
   r'\d+'
   t.value = int(t.value)
+  return t
+
+def t_FLOTANTE(t):
+  r'\d+\.\d+'
   return t
 
 #Agregue conteo de lineas
@@ -68,7 +76,7 @@ def t_error(t):
 
 #Construya el lexer
 lexer = lex.lex()
-#Lea el archivo source.txt y retorne los tokens
+#Lee el archivo source.txt y retorne los tokens
 print("---------------------------------------\n")
 print("---------A L G    # 1------------------\n")
 
@@ -81,6 +89,22 @@ with open("source.txt", "r") as archivo:
       if not tok:
         break  # No more input
       print(tok)
+
+
+print("---------------------------------------\n")
+print("---------ALGORITMO #2------------------\n")
+
+with open("source2.txt", "r") as archivo:
+  lexer.input(archivo.read())
+  archivo.seek(0)
+  for linea in archivo:
+    while True:
+      tok = lexer.token()
+      if not tok:
+        break  # No more input
+      print(tok)
+
+
 """
 data = '''fn main(){
 println!("Hola mundo");
@@ -97,3 +121,6 @@ while True:
     break  # No more input
   print(tok)
 """
+
+
+
