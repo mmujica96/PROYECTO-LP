@@ -26,7 +26,7 @@ reserved = {
 #Agregue todos los tokens solicitados
 tokens = [
   'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'LPAREN', 'RPAREN', 'RCOM',
-  'LCORCH', 'RCORCH', 'ID','MACRO', 'LESS', 'GREAT', 'STRING', 'EQUAL', 'PUNTO_COMA','FLOTANTE','COMA','PUNTO'
+  'LLLAV', 'RLLAV', 'ID','MACRO', 'LESS', 'GREAT', 'STRING', 'EQUAL', 'PUNTO_COMA','FLOTANTE','COMA','PUNTO'
 ] + list(reserved.values())
 
 
@@ -43,16 +43,16 @@ t_DIVIDE = r'/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_ignore_RCOM = r'\/\/.*'
-t_LCORCH = r'\{'
-t_RCORCH = r'\}'
+t_LLLAV = r'\{'
+t_RLLAV = r'\}'
 t_MACRO=r'!'
 t_LESS=r'\<'
 t_GREAT=r'\>'
-t_STRING=r'"'
+t_STRING=r'"[\S ]*"'
 t_EQUAL=r'='
 t_PUNTO_COMA= r';'
 t_COMA=r','
-t_PUNTO=r'.'
+t_PUNTO=r'\.'
 
 def t_NUMBER(t):
   r'\d+'
