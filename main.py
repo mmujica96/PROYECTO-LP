@@ -21,14 +21,16 @@ reserved = {
   'asyn': 'ASYN',
   'away': 'AWAY',
   'continue': 'CONTINUE',
-
+  'bool':'BOOL',
+  'String':'TIPO_STRING',
+  'from':'FROM'
 }
 #Agregue todos los tokens solicitados
 tokens = [
   'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'LPAREN', 'RPAREN', 'RCOM',
-  'LLLAV', 'RLLAV', 'ID','MACRO', 'LESS', 'GREAT', 'STRING', 'EQUAL', 'PUNTO_COMA','FLOTANTE','COMA','PUNTO'
+  'LLLAV', 'RLLAV', 'ID','MACRO', 'LESS', 'GREAT', 'STRING', 'EQUAL', 'PUNTO_COMA','FLOTANTE','COMA','PUNTO',
+  'TIPO_INT', 'TIPO_CHAR'
 ] + list(reserved.values())
-
 
 def t_ID(t):
   r'[a-zA-Z_][a-zA-Z_0-9]*'
@@ -53,6 +55,8 @@ t_EQUAL=r'='
 t_PUNTO_COMA= r';'
 t_COMA=r','
 t_PUNTO=r'\.'
+t_TIPO_INT=r'^(iu|i)(8|16|32|64|128)'
+t_TIPO_CHAR =r'\'\S\''
 
 def t_NUMBER(t):
   r'\d+'
