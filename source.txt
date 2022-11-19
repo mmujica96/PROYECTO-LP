@@ -1,8 +1,8 @@
 //Este comentario debe ser ignorador por el lexer
 fn main(){
   //Primer programa con rust
-  let x=8;
-  let y=9;
+  let x:i8=7;
+  let y=9.2;
   if(x<y){
       println!("x es menor que y");
   }else if(y<x){
