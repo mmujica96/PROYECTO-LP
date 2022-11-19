@@ -1,5 +1,5 @@
-//Ejemplo 2
-fn main() {
+// Ejemplo 2
+fn mjain() {
     let mut i = 1;
 
     while i < 100 {

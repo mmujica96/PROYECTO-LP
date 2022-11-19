@@ -1,6 +1,5 @@
 import ply.lex as lex
 
-import ply.lex as lex
 #rust
 #Palabras reservadas
 reserved = {
@@ -21,19 +20,20 @@ reserved = {
   'asyn': 'ASYN',
   'away': 'AWAY',
   'continue': 'CONTINUE',
-  'bool':'BOOL',
+  'bool':'TIPO_BOOL',
   'String':'TIPO_STRING',
   'from':'FROM',
   'new':'NEW',
-  'Vec': 'VEC OBJ',
-  'vec' : 'VEC'
-
+  'Vec': 'VEC_OBJ',
+  'vec' : 'VEC',
+  'use' : 'USE',
+  'char': 'TIPO_CHAR'
 }
 #Agregue todos los tokens solicitados
 tokens = [
   'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'LPAREN', 'RPAREN', 'RCOM',
   'LLLAV', 'RLLAV', 'ID','MACRO', 'LESS', 'GREAT', 'STRING', 'EQUAL', 'PUNTO_COMA','FLOTANTE','COMA','PUNTO',
-  'TIPO_INT', 'TIPO_CHAR', 'TURBO_FISH', 'RCORCH', 'LCORCH', 'LANGLE', 'RANGLE'
+  'TIPO_INT', 'CHAR', 'TURBO_FISH', 'RCORCH', 'LCORCH', 'LANGLE', 'RANGLE', 'BOOL'
 ] + list(reserved.values())
 
 def t_ID(t):
@@ -43,12 +43,12 @@ def t_ID(t):
 
 #Agregue sus Expresiones Regulares y o Funciones
 t_PLUS = r'\+'
-t_MINUS = r'-'
+t_MINUS = r'\-'
 t_TIMES = r'\*'
-t_DIVIDE = r'/'
+t_DIVIDE = r'\/'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
-t_ignore_RCOM = r'\/\/.*'
+t_ignore_RCOM = r'//[\S ]*'
 t_LLLAV = r'\{'
 t_RLLAV = r'\}'
 t_MACRO=r'!'
@@ -60,12 +60,13 @@ t_PUNTO_COMA= r';'
 t_COMA=r','
 t_PUNTO=r'\.'
 t_TIPO_INT=r'^(iu|i)(8|16|32|64|128|size)'
-t_TIPO_CHAR =r'\'\S\''
-t_TURBO_FISH=r'::'
-t_RCORCH=r'['
-t_LCORCH=r']'
+t_CHAR =r'\'\S\''
+t_TURBO_FISH=r'\:\:'
+t_RCORCH=r'\['
+t_LCORCH=r'\]'
 t_LANGLE=r'<'
 t_RANGLE=r'>'
+t_BOOL =r'(true|false)'
 
 def t_NUMBER(t):
   r'\d+'
@@ -105,7 +106,6 @@ with open("source.txt", "r") as archivo:
         break  # No more input
       print(tok)
 
-
 print("---------------------------------------\n")
 print("---------ALGORITMO #2------------------\n")
 
@@ -118,6 +118,3 @@ with open("source2.txt", "r") as archivo:
       if not tok:
         break  # No more input
       print(tok)
-
-
-
