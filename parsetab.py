@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AS ASYN AWAY BOOL BREAK CHAR COMA CONST CONTINUE DIVIDE DOUBLE_POINT ELSE EQUAL FLOAT FN FOR FROM GREAT ID IF LCORCH LESS LET LLLAV LPAREN MACRO MAIN MINUS MUT NEW NUMBER PLUS PRINTLN PUNTO PUNTO_COMA RCOM RCORCH RETURN RLLAV RPAREN STATIC STRING TIMES TIPO_BOOL TIPO_CHAR TIPO_INT TIPO_STRING TURBO_FISH USE VEC VEC_OBJ WHILEcuerpo : print\n  | asignacion\n  | tupla_asignacion\n  | tupla_declaracionprint : PRINTLN MACRO LPAREN valor RPAREN\n  | PRINTLN LPAREN NUMBER RPARENtupla_asignacion : LPAREN tupla_lista_de_datos RPAREN\n  asignacion : LET ID EQUAL valor\n  | LET MUT ID EQUAL valor\n  | CONST ID EQUAL valor\n  | LET ID DOUBLE_POINT TIPO_INT EQUAL NUMBER\n  | LET ID DOUBLE_POINT TIPO_CHAR EQUAL CHAR\n  | LET ID DOUBLE_POINT TIPO_STRING EQUAL STRING\n  | LET MUT ID EQUAL tipo_de_dato TURBO_FISH NEW LPAREN RPAREN\n  | LET ID DOUBLE_POINT tupla_asignacion EQUAL tupla_declaracion\n  | LET ID EQUAL tupla_declaracion\n  tupla_declaracion : LPAREN tupla_valores RPARENtupla_lista_de_datos : tipo_de_dato\n  | tipo_de_dato COMA tupla_lista_de_datostupla_valores : valor\n  | valor COMA tupla_valores tipo_de_dato : TIPO_STRING\n  | TIPO_BOOL\n  | TIPO_CHAR\n  | TIPO_INTvalor : NUMBER\n  | STRING\n  | CHAR\n  | BOOL\n  | FLOAT'
+_lr_signature = 'AS ASYN AWAY BOOL BREAK CHAR COMA CONST CONTINUE DIVIDE DOUBLE_POINT ELSE EQUAL FLOAT FN FOR FROM GREAT ID IF LCORCH LESS LET LLLAV LPAREN MACRO MAIN MINUS MUT NEW NUMBER PLUS PRINTLN PUNTO PUNTO_COMA RCOM RCORCH RETURN RLLAV RPAREN STATIC STRING TIMES TIPO_BOOL TIPO_CHAR TIPO_INT TIPO_STRING TURBO_FISH USE VEC VEC_OBJ WHILEcuerpo : asignacion\n            | operaciones\n            | comparaciones\n            | definir_funcion\n            | print\n            | library_callasignacion : LET ID EQUAL VEC MACRO LCORCH tupla_valores RCORCH\n                | LET ID EQUAL valor\n                | LET MUT ID EQUAL valor\n                | CONST ID EQUAL valor\n                | LET ID DOUBLE_POINT TIPO_INT EQUAL NUMBER\n                | LET ID DOUBLE_POINT TIPO_CHAR EQUAL CHAR\n                | LET ID DOUBLE_POINT TIPO_STRING EQUAL STRING\n                | LET MUT ID EQUAL tipo_de_dato TURBO_FISH NEW LPAREN RPAREN\n                | LET ID DOUBLE_POINT tupla_asignacion EQUAL tupla_declaracion\n                | LET ID EQUAL tupla_declaracion\n                | LET ID EQUAL VEC TURBO_FISH NEW LPAREN RPAREN\n                | LET ID EQUAL VEC MACRO RCORCH LCORCH\n                | LET ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC MACRO RCORCH tupla_valores LCORCH\n                tupla_asignacion : LPAREN tupla_lista_de_datos RPAREN\n  tupla_declaracion : LPAREN tupla_valores RPARENtupla_lista_de_datos : tipo_de_dato\n                          | tipo_de_dato COMA tupla_lista_de_datostupla_valores : valor\n                    | valor COMA tupla_valores definir_funcion : funcion_main \n                      | funcionfuncion_main : FN MAIN LPAREN RPARENfuncion : FN ID LPAREN RPAREN\n             | FN ID LPAREN lista_parametros RPARENlista_parametros : ID DOUBLE_POINT tipo_de_dato\n                      | ID DOUBLE_POINT tipo_de_dato COMA lista_parametros operaciones : suma\n                  | resta\n                  | multiplicacion\n                  | division\n                  suma : valor_numerico PLUS valor_numerico\n          | suma PLUS valor_numerico resta : valor_numerico MINUS valor_numerico\n           | resta MINUS valor_numerico multiplicacion : valor_numerico TIMES valor_numerico\n                    | multiplicacion TIMES valor_numericodivision : valor_numerico DIVIDE valor_numericocomparaciones : menor\n                   | menor_igual\n                   | mayor\n                   | mayor_igual\n                   | igualmenor : valor_numerico LESS valor_numericomenor_igual : valor_numerico LESS EQUAL valor_numericomayor : valor_numerico GREAT valor_numericomayor_igual : valor_numerico GREAT EQUAL valor_numericoigual : valor_numerico EQUAL EQUAL valor_numericotipo_de_dato : TIPO_STRING\n                  | TIPO_BOOL\n                  | TIPO_CHAR\n                  | TIPO_INTvalor  : valor_numerico\n            | STRING\n            | CHAR\n            | BOOLvalor_numerico : FLOAT\n                    | NUMBERprint  : PRINTLN MACRO LPAREN valor RPAREN\n            | PRINTLN LPAREN NUMBER RPARENlibrary_call : USE library_pathlibrary_path : ID \n                  | ID TURBO_FISH library_path'
     
-_lr_action_items = {'PRINTLN':([0,],[6,]),'LET':([0,],[8,]),'CONST':([0,],[9,]),'LPAREN':([0,6,10,34,35,56,64,],[7,11,28,44,49,44,65,]),'$end':([1,2,3,4,5,20,21,22,23,24,30,31,39,42,43,51,52,57,59,60,61,62,66,],[0,-1,-2,-3,-4,-26,-27,-28,-29,-30,-7,-17,-6,-8,-16,-10,-5,-9,-11,-12,-13,-15,-14,]),'MACRO':([6,],[10,]),'TIPO_STRING':([7,32,35,49,50,],[16,16,47,16,16,]),'TIPO_BOOL':([7,32,49,50,],[17,17,17,17,]),'TIPO_CHAR':([7,32,35,49,50,],[18,18,46,18,18,]),'TIPO_INT':([7,32,35,49,50,],[19,19,45,19,19,]),'NUMBER':([7,11,28,33,34,37,44,50,53,],[20,29,20,20,20,20,20,20,59,]),'STRING':([7,28,33,34,37,44,50,55,],[21,21,21,21,21,21,21,61,]),'CHAR':([7,28,33,34,37,44,50,54,],[22,22,22,22,22,22,22,60,]),'BOOL':([7,28,33,34,37,44,50,],[23,23,23,23,23,23,23,]),'FLOAT':([7,28,33,34,37,44,50,],[24,24,24,24,24,24,24,]),'ID':([8,9,26,],[25,27,36,]),'MUT':([8,],[26,]),'RPAREN':([12,13,14,15,16,17,18,19,20,21,22,23,24,29,38,40,41,65,],[30,31,-18,-20,-22,-23,-24,-25,-26,-27,-28,-29,-30,39,52,-19,-21,66,]),'COMA':([14,15,16,17,18,19,20,21,22,23,24,],[32,33,-22,-23,-24,-25,-26,-27,-28,-29,-30,]),'TURBO_FISH':([16,17,18,19,58,],[-22,-23,-24,-25,63,]),'EQUAL':([25,27,30,36,45,46,47,48,],[34,37,-7,50,53,54,55,56,]),'DOUBLE_POINT':([25,],[35,]),'NEW':([63,],[64,]),}
+_lr_action_items = {'LET':([0,],[8,]),'CONST':([0,],[9,]),'PRINTLN':([0,],[22,]),'USE':([0,],[23,]),'FN':([0,],[25,]),'FLOAT':([0,30,31,32,37,38,39,40,41,43,46,49,53,61,62,64,70,81,113,117,143,],[26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,26,]),'NUMBER':([0,30,31,32,34,37,38,39,40,41,43,46,49,53,61,62,64,70,81,97,113,117,143,],[10,10,10,10,54,10,10,10,10,10,10,10,10,10,10,10,10,10,10,118,10,10,10,]),'$end':([1,2,3,4,5,6,7,10,11,12,13,14,15,16,17,18,19,20,21,26,35,36,50,51,52,56,57,58,59,60,63,68,69,71,72,73,74,82,84,85,86,87,88,89,91,108,110,112,116,118,119,120,121,128,135,136,141,145,],[0,-1,-2,-3,-4,-5,-6,-63,-33,-34,-35,-36,-44,-45,-46,-47,-48,-26,-27,-62,-66,-67,-38,-40,-42,-37,-39,-41,-43,-49,-51,-8,-16,-58,-59,-60,-61,-10,-65,-68,-50,-53,-52,-28,-29,-9,-64,-30,-21,-11,-12,-13,-15,-18,-7,-17,-14,-19,]),'ID':([8,9,23,25,28,55,66,134,],[27,29,36,45,48,36,90,90,]),'MUT':([8,],[28,]),'PLUS':([10,11,24,26,50,56,],[-63,30,37,-62,-38,-37,]),'MINUS':([10,12,24,26,51,57,],[-63,31,38,-62,-40,-39,]),'TIMES':([10,13,24,26,52,58,],[-63,32,39,-62,-42,-41,]),'DIVIDE':([10,24,26,],[-63,40,-62,]),'LESS':([10,24,26,79,],[-63,41,-62,101,]),'GREAT':([10,24,26,104,105,106,107,122,],[-63,43,-62,-54,-55,-56,-57,131,]),'EQUAL':([10,24,26,27,29,41,42,43,48,75,76,77,78,123,131,],[-63,42,-62,46,49,61,62,64,81,97,98,99,100,-20,137,]),'RPAREN':([10,26,54,65,66,71,72,73,74,83,92,95,96,102,103,104,105,106,107,126,129,130,132,138,139,],[-63,-62,84,89,91,-58,-59,-60,-61,110,112,116,-24,123,-22,-54,-55,-56,-57,-31,136,-25,-23,141,-32,]),'COMA':([10,26,71,72,73,74,96,103,104,105,106,107,126,],[-63,-62,-58,-59,-60,-61,117,124,-54,-55,-56,-57,134,]),'RCORCH':([10,26,71,72,73,74,93,96,127,130,142,],[-63,-62,-58,-59,-60,-61,114,-24,135,-25,143,]),'LCORCH':([10,26,71,72,73,74,93,96,114,130,144,],[-63,-62,-58,-59,-60,-61,113,-24,128,-25,145,]),'MACRO':([22,67,140,],[33,93,142,]),'LPAREN':([22,33,44,45,46,47,100,115,133,],[34,53,65,66,70,80,70,129,138,]),'MAIN':([25,],[44,]),'DOUBLE_POINT':([27,90,],[47,111,]),'TURBO_FISH':([36,67,104,105,106,107,109,],[55,94,-54,-55,-56,-57,125,]),'VEC':([46,137,],[67,140,]),'STRING':([46,49,53,70,81,99,113,117,143,],[72,72,72,72,72,120,72,72,72,]),'CHAR':([46,49,53,70,81,98,113,117,143,],[73,73,73,73,73,119,73,73,73,]),'BOOL':([46,49,53,70,81,113,117,143,],[74,74,74,74,74,74,74,74,]),'TIPO_INT':([47,80,81,101,111,124,],[75,107,107,107,107,107,]),'TIPO_CHAR':([47,80,81,101,111,124,],[76,106,106,106,106,106,]),'TIPO_STRING':([47,80,81,101,111,124,],[77,104,104,104,104,104,]),'VEC_OBJ':([47,],[79,]),'TIPO_BOOL':([80,81,101,111,124,],[105,105,105,105,105,]),'NEW':([94,125,],[115,133,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'cuerpo':([0,],[1,]),'print':([0,],[2,]),'asignacion':([0,],[3,]),'tupla_asignacion':([0,35,],[4,48,]),'tupla_declaracion':([0,34,56,],[5,43,62,]),'tupla_lista_de_datos':([7,32,49,],[12,40,12,]),'tupla_valores':([7,33,44,],[13,41,13,]),'tipo_de_dato':([7,32,49,50,],[14,14,14,58,]),'valor':([7,28,33,34,37,44,50,],[15,38,15,42,51,15,57,]),}
+_lr_goto_items = {'cuerpo':([0,],[1,]),'asignacion':([0,],[2,]),'operaciones':([0,],[3,]),'comparaciones':([0,],[4,]),'definir_funcion':([0,],[5,]),'print':([0,],[6,]),'library_call':([0,],[7,]),'suma':([0,],[11,]),'resta':([0,],[12,]),'multiplicacion':([0,],[13,]),'division':([0,],[14,]),'menor':([0,],[15,]),'menor_igual':([0,],[16,]),'mayor':([0,],[17,]),'mayor_igual':([0,],[18,]),'igual':([0,],[19,]),'funcion_main':([0,],[20,]),'funcion':([0,],[21,]),'valor_numerico':([0,30,31,32,37,38,39,40,41,43,46,49,53,61,62,64,70,81,113,117,143,],[24,50,51,52,56,57,58,59,60,63,71,71,71,86,87,88,71,71,71,71,71,]),'library_path':([23,55,],[35,85,]),'valor':([46,49,53,70,81,113,117,143,],[68,82,83,96,108,96,96,96,]),'tupla_declaracion':([46,100,],[69,121,]),'tupla_asignacion':([47,],[78,]),'lista_parametros':([66,134,],[92,139,]),'tupla_valores':([70,113,117,143,],[95,127,130,144,]),'tupla_lista_de_datos':([80,124,],[102,132,]),'tipo_de_dato':([80,81,101,111,124,],[103,109,122,126,103,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,34 +27,72 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> cuerpo","S'",1,None,None,None),
-  ('cuerpo -> print','cuerpo',1,'p_cuerpo','sintactico.py',5),
-  ('cuerpo -> asignacion','cuerpo',1,'p_cuerpo','sintactico.py',6),
-  ('cuerpo -> tupla_asignacion','cuerpo',1,'p_cuerpo','sintactico.py',7),
-  ('cuerpo -> tupla_declaracion','cuerpo',1,'p_cuerpo','sintactico.py',8),
-  ('print -> PRINTLN MACRO LPAREN valor RPAREN','print',5,'p_print','sintactico.py',12),
-  ('print -> PRINTLN LPAREN NUMBER RPAREN','print',4,'p_print','sintactico.py',13),
-  ('tupla_asignacion -> LPAREN tupla_lista_de_datos RPAREN','tupla_asignacion',3,'p_tupla_asignacion','sintactico.py',16),
-  ('asignacion -> LET ID EQUAL valor','asignacion',4,'p_asignacion','sintactico.py',21),
-  ('asignacion -> LET MUT ID EQUAL valor','asignacion',5,'p_asignacion','sintactico.py',22),
-  ('asignacion -> CONST ID EQUAL valor','asignacion',4,'p_asignacion','sintactico.py',23),
-  ('asignacion -> LET ID DOUBLE_POINT TIPO_INT EQUAL NUMBER','asignacion',6,'p_asignacion','sintactico.py',24),
-  ('asignacion -> LET ID DOUBLE_POINT TIPO_CHAR EQUAL CHAR','asignacion',6,'p_asignacion','sintactico.py',25),
-  ('asignacion -> LET ID DOUBLE_POINT TIPO_STRING EQUAL STRING','asignacion',6,'p_asignacion','sintactico.py',26),
-  ('asignacion -> LET MUT ID EQUAL tipo_de_dato TURBO_FISH NEW LPAREN RPAREN','asignacion',9,'p_asignacion','sintactico.py',27),
-  ('asignacion -> LET ID DOUBLE_POINT tupla_asignacion EQUAL tupla_declaracion','asignacion',6,'p_asignacion','sintactico.py',28),
-  ('asignacion -> LET ID EQUAL tupla_declaracion','asignacion',4,'p_asignacion','sintactico.py',29),
-  ('tupla_declaracion -> LPAREN tupla_valores RPAREN','tupla_declaracion',3,'p_tupla_declaracion','sintactico.py',33),
-  ('tupla_lista_de_datos -> tipo_de_dato','tupla_lista_de_datos',1,'p_tupla_lista_de_datos','sintactico.py',36),
-  ('tupla_lista_de_datos -> tipo_de_dato COMA tupla_lista_de_datos','tupla_lista_de_datos',3,'p_tupla_lista_de_datos','sintactico.py',37),
-  ('tupla_valores -> valor','tupla_valores',1,'p_tupla_valores','sintactico.py',40),
-  ('tupla_valores -> valor COMA tupla_valores','tupla_valores',3,'p_tupla_valores','sintactico.py',41),
-  ('tipo_de_dato -> TIPO_STRING','tipo_de_dato',1,'p_tipo_de_dato','sintactico.py',44),
-  ('tipo_de_dato -> TIPO_BOOL','tipo_de_dato',1,'p_tipo_de_dato','sintactico.py',45),
-  ('tipo_de_dato -> TIPO_CHAR','tipo_de_dato',1,'p_tipo_de_dato','sintactico.py',46),
-  ('tipo_de_dato -> TIPO_INT','tipo_de_dato',1,'p_tipo_de_dato','sintactico.py',47),
-  ('valor -> NUMBER','valor',1,'p_valor','sintactico.py',51),
-  ('valor -> STRING','valor',1,'p_valor','sintactico.py',52),
-  ('valor -> CHAR','valor',1,'p_valor','sintactico.py',53),
-  ('valor -> BOOL','valor',1,'p_valor','sintactico.py',54),
-  ('valor -> FLOAT','valor',1,'p_valor','sintactico.py',55),
+  ('cuerpo -> asignacion','cuerpo',1,'p_cuerpo','sintactico.py',5),
+  ('cuerpo -> operaciones','cuerpo',1,'p_cuerpo','sintactico.py',6),
+  ('cuerpo -> comparaciones','cuerpo',1,'p_cuerpo','sintactico.py',7),
+  ('cuerpo -> definir_funcion','cuerpo',1,'p_cuerpo','sintactico.py',8),
+  ('cuerpo -> print','cuerpo',1,'p_cuerpo','sintactico.py',9),
+  ('cuerpo -> library_call','cuerpo',1,'p_cuerpo','sintactico.py',10),
+  ('asignacion -> LET ID EQUAL VEC MACRO LCORCH tupla_valores RCORCH','asignacion',8,'p_asignacion','sintactico.py',14),
+  ('asignacion -> LET ID EQUAL valor','asignacion',4,'p_asignacion','sintactico.py',15),
+  ('asignacion -> LET MUT ID EQUAL valor','asignacion',5,'p_asignacion','sintactico.py',16),
+  ('asignacion -> CONST ID EQUAL valor','asignacion',4,'p_asignacion','sintactico.py',17),
+  ('asignacion -> LET ID DOUBLE_POINT TIPO_INT EQUAL NUMBER','asignacion',6,'p_asignacion','sintactico.py',18),
+  ('asignacion -> LET ID DOUBLE_POINT TIPO_CHAR EQUAL CHAR','asignacion',6,'p_asignacion','sintactico.py',19),
+  ('asignacion -> LET ID DOUBLE_POINT TIPO_STRING EQUAL STRING','asignacion',6,'p_asignacion','sintactico.py',20),
+  ('asignacion -> LET MUT ID EQUAL tipo_de_dato TURBO_FISH NEW LPAREN RPAREN','asignacion',9,'p_asignacion','sintactico.py',21),
+  ('asignacion -> LET ID DOUBLE_POINT tupla_asignacion EQUAL tupla_declaracion','asignacion',6,'p_asignacion','sintactico.py',22),
+  ('asignacion -> LET ID EQUAL tupla_declaracion','asignacion',4,'p_asignacion','sintactico.py',23),
+  ('asignacion -> LET ID EQUAL VEC TURBO_FISH NEW LPAREN RPAREN','asignacion',8,'p_asignacion','sintactico.py',24),
+  ('asignacion -> LET ID EQUAL VEC MACRO RCORCH LCORCH','asignacion',7,'p_asignacion','sintactico.py',25),
+  ('asignacion -> LET ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC MACRO RCORCH tupla_valores LCORCH','asignacion',13,'p_asignacion','sintactico.py',26),
+  ('tupla_asignacion -> LPAREN tupla_lista_de_datos RPAREN','tupla_asignacion',3,'p_tupla_asignacion','sintactico.py',32),
+  ('tupla_declaracion -> LPAREN tupla_valores RPAREN','tupla_declaracion',3,'p_tupla_declaracion','sintactico.py',36),
+  ('tupla_lista_de_datos -> tipo_de_dato','tupla_lista_de_datos',1,'p_tupla_lista_de_datos','sintactico.py',39),
+  ('tupla_lista_de_datos -> tipo_de_dato COMA tupla_lista_de_datos','tupla_lista_de_datos',3,'p_tupla_lista_de_datos','sintactico.py',40),
+  ('tupla_valores -> valor','tupla_valores',1,'p_tupla_valores','sintactico.py',43),
+  ('tupla_valores -> valor COMA tupla_valores','tupla_valores',3,'p_tupla_valores','sintactico.py',44),
+  ('definir_funcion -> funcion_main','definir_funcion',1,'p_definir_funcion','sintactico.py',48),
+  ('definir_funcion -> funcion','definir_funcion',1,'p_definir_funcion','sintactico.py',49),
+  ('funcion_main -> FN MAIN LPAREN RPAREN','funcion_main',4,'p_funcion_main','sintactico.py',52),
+  ('funcion -> FN ID LPAREN RPAREN','funcion',4,'p_funcion','sintactico.py',55),
+  ('funcion -> FN ID LPAREN lista_parametros RPAREN','funcion',5,'p_funcion','sintactico.py',56),
+  ('lista_parametros -> ID DOUBLE_POINT tipo_de_dato','lista_parametros',3,'p_lista_parametros','sintactico.py',59),
+  ('lista_parametros -> ID DOUBLE_POINT tipo_de_dato COMA lista_parametros','lista_parametros',5,'p_lista_parametros','sintactico.py',60),
+  ('operaciones -> suma','operaciones',1,'p_operaciones','sintactico.py',64),
+  ('operaciones -> resta','operaciones',1,'p_operaciones','sintactico.py',65),
+  ('operaciones -> multiplicacion','operaciones',1,'p_operaciones','sintactico.py',66),
+  ('operaciones -> division','operaciones',1,'p_operaciones','sintactico.py',67),
+  ('suma -> valor_numerico PLUS valor_numerico','suma',3,'p_suma','sintactico.py',71),
+  ('suma -> suma PLUS valor_numerico','suma',3,'p_suma','sintactico.py',72),
+  ('resta -> valor_numerico MINUS valor_numerico','resta',3,'p_resta','sintactico.py',75),
+  ('resta -> resta MINUS valor_numerico','resta',3,'p_resta','sintactico.py',76),
+  ('multiplicacion -> valor_numerico TIMES valor_numerico','multiplicacion',3,'p_multiplicacion','sintactico.py',79),
+  ('multiplicacion -> multiplicacion TIMES valor_numerico','multiplicacion',3,'p_multiplicacion','sintactico.py',80),
+  ('division -> valor_numerico DIVIDE valor_numerico','division',3,'p_division','sintactico.py',83),
+  ('comparaciones -> menor','comparaciones',1,'p_comparaciones','sintactico.py',87),
+  ('comparaciones -> menor_igual','comparaciones',1,'p_comparaciones','sintactico.py',88),
+  ('comparaciones -> mayor','comparaciones',1,'p_comparaciones','sintactico.py',89),
+  ('comparaciones -> mayor_igual','comparaciones',1,'p_comparaciones','sintactico.py',90),
+  ('comparaciones -> igual','comparaciones',1,'p_comparaciones','sintactico.py',91),
+  ('menor -> valor_numerico LESS valor_numerico','menor',3,'p_menor','sintactico.py',94),
+  ('menor_igual -> valor_numerico LESS EQUAL valor_numerico','menor_igual',4,'p_menor_igual','sintactico.py',96),
+  ('mayor -> valor_numerico GREAT valor_numerico','mayor',3,'p_mayor','sintactico.py',99),
+  ('mayor_igual -> valor_numerico GREAT EQUAL valor_numerico','mayor_igual',4,'p_mayor_igual','sintactico.py',101),
+  ('igual -> valor_numerico EQUAL EQUAL valor_numerico','igual',4,'p_igual','sintactico.py',104),
+  ('tipo_de_dato -> TIPO_STRING','tipo_de_dato',1,'p_tipo_de_dato','sintactico.py',108),
+  ('tipo_de_dato -> TIPO_BOOL','tipo_de_dato',1,'p_tipo_de_dato','sintactico.py',109),
+  ('tipo_de_dato -> TIPO_CHAR','tipo_de_dato',1,'p_tipo_de_dato','sintactico.py',110),
+  ('tipo_de_dato -> TIPO_INT','tipo_de_dato',1,'p_tipo_de_dato','sintactico.py',111),
+  ('valor -> valor_numerico','valor',1,'p_valor','sintactico.py',114),
+  ('valor -> STRING','valor',1,'p_valor','sintactico.py',115),
+  ('valor -> CHAR','valor',1,'p_valor','sintactico.py',116),
+  ('valor -> BOOL','valor',1,'p_valor','sintactico.py',117),
+  ('valor_numerico -> FLOAT','valor_numerico',1,'p_valor_numerico','sintactico.py',120),
+  ('valor_numerico -> NUMBER','valor_numerico',1,'p_valor_numerico','sintactico.py',121),
+  ('print -> PRINTLN MACRO LPAREN valor RPAREN','print',5,'p_print','sintactico.py',125),
+  ('print -> PRINTLN LPAREN NUMBER RPAREN','print',4,'p_print','sintactico.py',126),
+  ('library_call -> USE library_path','library_call',2,'p_library_call','sintactico.py',129),
+  ('library_path -> ID','library_path',1,'p_library_path','sintactico.py',132),
+  ('library_path -> ID TURBO_FISH library_path','library_path',3,'p_library_path','sintactico.py',133),
 ]

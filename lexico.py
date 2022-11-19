@@ -57,8 +57,8 @@ t_COMA=r','
 t_PUNTO=r'\.'
 t_CHAR =r'\'\S\''
 t_TURBO_FISH=r'\:\:'
-t_RCORCH=r'\['
-t_LCORCH=r'\]'
+t_LCORCH=r'\['
+t_RCORCH=r'\]'
 t_DOUBLE_POINT=r'\:'
 
 
