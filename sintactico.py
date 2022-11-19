@@ -10,9 +10,13 @@ def p_cuerpo(p):
             | library_call"""
 
 ##ASIGNACION - HANS RAMOS
+
+## problema haciendo una regla que englobe (let , let mut, const) en una sola llamada asignacion, arreglar
 def p_asignacion(p):
-  """asignacion : LET ID EQUAL VEC MACRO LCORCH tupla_valores RCORCH
+  """asignacion : LET ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC MACRO LCORCH tupla_valores RCORCH
+                | LET ID EQUAL VEC MACRO LCORCH tupla_valores RCORCH
                 | LET ID EQUAL VEC TURBO_FISH NEW LPAREN RPAREN
+                | LET ID EQUAL VEC MACRO LCORCH RCORCH
                 | LET ID EQUAL valor
                 | LET MUT ID EQUAL valor
                 | CONST ID EQUAL valor
@@ -22,12 +26,7 @@ def p_asignacion(p):
                 | LET MUT ID EQUAL tipo_de_dato TURBO_FISH NEW LPAREN RPAREN
                 | LET ID DOUBLE_POINT tupla_asignacion EQUAL tupla_declaracion
                 | LET ID EQUAL tupla_declaracion
-                
-                | LET ID EQUAL VEC MACRO RCORCH LCORCH
-                | LET ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC MACRO RCORCH tupla_valores LCORCH
                 """
-
-
 
 def p_tupla_asignacion(p):
   """tupla_asignacion : LPAREN tupla_lista_de_datos RPAREN
