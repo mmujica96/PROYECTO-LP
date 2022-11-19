@@ -23,13 +23,17 @@ reserved = {
   'continue': 'CONTINUE',
   'bool':'BOOL',
   'String':'TIPO_STRING',
-  'from':'FROM'
+  'from':'FROM',
+  'new':'NEW',
+  'Vec': 'VEC OBJ',
+  'vec' : 'VEC'
+
 }
 #Agregue todos los tokens solicitados
 tokens = [
   'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'LPAREN', 'RPAREN', 'RCOM',
   'LLLAV', 'RLLAV', 'ID','MACRO', 'LESS', 'GREAT', 'STRING', 'EQUAL', 'PUNTO_COMA','FLOTANTE','COMA','PUNTO',
-  'TIPO_INT', 'TIPO_CHAR'
+  'TIPO_INT', 'TIPO_CHAR', 'TURBO_FISH', 'RCORCH', 'LCORCH', 'LANGLE', 'RANGLE'
 ] + list(reserved.values())
 
 def t_ID(t):
@@ -55,8 +59,13 @@ t_EQUAL=r'='
 t_PUNTO_COMA= r';'
 t_COMA=r','
 t_PUNTO=r'\.'
-t_TIPO_INT=r'^(iu|i)(8|16|32|64|128)'
+t_TIPO_INT=r'^(iu|i)(8|16|32|64|128|size)'
 t_TIPO_CHAR =r'\'\S\''
+t_TURBO_FISH=r'::'
+t_RCORCH=r'['
+t_LCORCH=r']'
+t_LANGLE=r'<'
+t_RANGLE=r'>'
 
 def t_NUMBER(t):
   r'\d+'
@@ -109,24 +118,6 @@ with open("source2.txt", "r") as archivo:
       if not tok:
         break  # No more input
       print(tok)
-
-
-"""
-data = '''fn main(){
-println!("Hola mundo");
-//Este es un comentario
-}
-'''
-print('Mi primer Lexer')
-lexer.input(data)
-
-# Tokenize
-while True:
-  tok = lexer.token()
-  if not tok:
-    break  # No more input
-  print(tok)
-"""
 
 
 
