@@ -21,8 +21,7 @@ def p_asignacion(p):
 
 ##No es parte del analizador sintactico, corregir
 def p_valor(p):
-  """valor : NUMBER
-  | FLOAT"""
+  """valor : NUMBER"""
 
 ##No es parte del analizador sintactico, corregir
 def p_error(p):

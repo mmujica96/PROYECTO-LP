@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftPLUSMINUSleftTIMESDIVIDErightUMINUSDIVIDE EQUALS LPAREN MINUS NAME NUMBER PLUS RPAREN TIMESstatement : NAME EQUALS expressionstatement : expressionexpression : expression PLUS expression\n                    | expression MINUS expression\n                    | expression TIMES expression\n                    | expression DIVIDE expressionexpression : MINUS expression %prec UMINUSexpression : LPAREN expression RPARENexpression : NUMBERexpression : NAME'
+_lr_signature = 'AS ASYN AWAY BOOL BREAK CHAR COMA CONST CONTINUE DIVIDE ELSE EQUAL FLOTANTE FN FOR FROM GREAT ID IF LANGLE LCORCH LESS LET LLLAV LPAREN MACRO MAIN MINUS MUT NEW NUMBER PLUS PRINTLN PUNTO PUNTO_COMA RANGLE RCOM RCORCH RETURN RLLAV RPAREN STATIC STRING TIMES TIPO_BOOL TIPO_CHAR TIPO_INT TIPO_STRING TURBO_FISH USE VEC VEC_OBJ WHILEcuerpo : print\n  | asignacionprint : PRINTLN MACRO LPAREN valor RPAREN\n  | PRINTLN LPAREN NUMBER RPARENasignacion : LET ID EQUAL valor\n  | LET MUT ID EQUAL valor\n  | CONST ID EQUAL valor\n  | LET ID TURBO_FISH TIPO_INT EQUAL NUMBER\n  | LET ID TURBO_FISH TIPO_CHAR EQUAL CHAR\n  | LET ID TURBO_FISH TIPO_STRING EQUAL STRINGvalor : NUMBER'
     
-_lr_action_items = {'NAME':([0,4,5,7,8,9,10,11,],[2,13,13,13,13,13,13,13,]),'MINUS':([0,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,],[4,-10,9,4,4,-9,4,4,4,4,4,-7,-10,9,9,-3,-4,-5,-6,-8,]),'LPAREN':([0,4,5,7,8,9,10,11,],[5,5,5,5,5,5,5,5,]),'NUMBER':([0,4,5,7,8,9,10,11,],[6,6,6,6,6,6,6,6,]),'$end':([1,2,3,6,12,13,15,16,17,18,19,20,],[0,-10,-2,-9,-7,-10,-1,-3,-4,-5,-6,-8,]),'EQUALS':([2,],[7,]),'PLUS':([2,3,6,12,13,14,15,16,17,18,19,20,],[-10,8,-9,-7,-10,8,8,-3,-4,-5,-6,-8,]),'TIMES':([2,3,6,12,13,14,15,16,17,18,19,20,],[-10,10,-9,-7,-10,10,10,10,10,-5,-6,-8,]),'DIVIDE':([2,3,6,12,13,14,15,16,17,18,19,20,],[-10,11,-9,-7,-10,11,11,11,11,-5,-6,-8,]),'RPAREN':([6,12,13,14,16,17,18,19,20,],[-9,-7,-10,20,-3,-4,-5,-6,-8,]),}
+_lr_action_items = {'PRINTLN':([0,],[4,]),'LET':([0,],[5,]),'CONST':([0,],[6,]),'$end':([1,2,3,19,20,21,26,27,31,32,33,34,],[0,-1,-2,-11,-4,-5,-7,-3,-6,-8,-9,-10,]),'MACRO':([4,],[7,]),'LPAREN':([4,7,],[8,12,]),'ID':([5,6,10,],[9,11,16,]),'MUT':([5,],[10,]),'NUMBER':([8,12,14,17,25,28,],[13,19,19,19,19,32,]),'EQUAL':([9,11,16,22,23,24,],[14,17,25,28,29,30,]),'TURBO_FISH':([9,],[15,]),'RPAREN':([13,18,19,],[20,27,-11,]),'TIPO_INT':([15,],[22,]),'TIPO_CHAR':([15,],[23,]),'TIPO_STRING':([15,],[24,]),'CHAR':([29,],[33,]),'STRING':([30,],[34,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'statement':([0,],[1,]),'expression':([0,4,5,7,8,9,10,11,],[3,12,14,15,16,17,18,19,]),}
+_lr_goto_items = {'cuerpo':([0,],[1,]),'print':([0,],[2,]),'asignacion':([0,],[3,]),'valor':([12,14,17,25,],[18,21,26,31,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -26,15 +26,16 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> statement","S'",1,None,None,None),
-  ('statement -> NAME EQUALS expression','statement',3,'p_statement_assign','main.py',51),
-  ('statement -> expression','statement',1,'p_statement_expr','main.py',55),
-  ('expression -> expression PLUS expression','expression',3,'p_expression_binop','main.py',59),
-  ('expression -> expression MINUS expression','expression',3,'p_expression_binop','main.py',60),
-  ('expression -> expression TIMES expression','expression',3,'p_expression_binop','main.py',61),
-  ('expression -> expression DIVIDE expression','expression',3,'p_expression_binop','main.py',62),
-  ('expression -> MINUS expression','expression',2,'p_expression_uminus','main.py',69),
-  ('expression -> LPAREN expression RPAREN','expression',3,'p_expression_group','main.py',73),
-  ('expression -> NUMBER','expression',1,'p_expression_number','main.py',77),
-  ('expression -> NAME','expression',1,'p_expression_name','main.py',81),
+  ("S' -> cuerpo","S'",1,None,None,None),
+  ('cuerpo -> print','cuerpo',1,'p_cuerpo','sintactico.py',5),
+  ('cuerpo -> asignacion','cuerpo',1,'p_cuerpo','sintactico.py',6),
+  ('print -> PRINTLN MACRO LPAREN valor RPAREN','print',5,'p_print','sintactico.py',10),
+  ('print -> PRINTLN LPAREN NUMBER RPAREN','print',4,'p_print','sintactico.py',11),
+  ('asignacion -> LET ID EQUAL valor','asignacion',4,'p_asignacion','sintactico.py',15),
+  ('asignacion -> LET MUT ID EQUAL valor','asignacion',5,'p_asignacion','sintactico.py',16),
+  ('asignacion -> CONST ID EQUAL valor','asignacion',4,'p_asignacion','sintactico.py',17),
+  ('asignacion -> LET ID TURBO_FISH TIPO_INT EQUAL NUMBER','asignacion',6,'p_asignacion','sintactico.py',18),
+  ('asignacion -> LET ID TURBO_FISH TIPO_CHAR EQUAL CHAR','asignacion',6,'p_asignacion','sintactico.py',19),
+  ('asignacion -> LET ID TURBO_FISH TIPO_STRING EQUAL STRING','asignacion',6,'p_asignacion','sintactico.py',20),
+  ('valor -> NUMBER','valor',1,'p_valor','sintactico.py',24),
 ]
