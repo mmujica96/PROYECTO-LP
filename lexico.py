@@ -37,7 +37,7 @@ reserved = {
 tokens = [
   'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'LPAREN', 'RPAREN', 'RCOM','TIPO_INT',
   'LLLAV', 'RLLAV', 'ID','MACRO', 'LESS', 'GREAT', 'STRING', 'EQUAL', 'PUNTO_COMA','FLOAT','COMA','PUNTO', 'CHAR', 'TURBO_FISH', 'RCORCH',
-   'LCORCH','BOOL', 'DOUBLE_POINT',
+   'LCORCH','BOOL', 'DOUBLE_POINT', 'AND', 'NOT', 'OR'
 ] + list(reserved.values())
 
 #Agregue sus Expresiones Regulares y o Funciones
@@ -63,6 +63,9 @@ t_TURBO_FISH=r'\:\:'
 t_LCORCH=r'\['
 t_RCORCH=r'\]'
 t_DOUBLE_POINT=r'\:'
+t_AND=r'&&'
+t_NOT=r'!'
+t_OR=r'||' 
 
 
 def t_TIPO_INT(t):

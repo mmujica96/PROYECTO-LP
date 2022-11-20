@@ -24,6 +24,7 @@ Rule 1     cuerpo -> asignacion
 Rule 2     cuerpo -> operaciones
 Rule 3     cuerpo -> comparaciones
 Rule 4     cuerpo -> definir_funcion
+<<<<<<< HEAD
 Rule 5     cuerpo -> llamada_a_metodo
 Rule 6     cuerpo -> enum
 Rule 7     cuerpo -> print
@@ -39,6 +40,23 @@ Rule 16    asignacion -> declaracion ID DOUBLE_POINT TIPO_STRING EQUAL STRING
 Rule 17    asignacion -> declaracion ID EQUAL tipo_de_dato TURBO_FISH NEW LPAREN RPAREN
 Rule 18    asignacion -> declaracion DOUBLE_POINT tupla_asignacion EQUAL tupla_declaracion
 Rule 19    asignacion -> declaracion ID EQUAL tupla_declaracion
+=======
+Rule 5     cuerpo -> print
+Rule 6     cuerpo -> library_call
+Rule 7     asignacion -> LET ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC MACRO LCORCH tupla_valores RCORCH
+Rule 8     asignacion -> LET ID EQUAL VEC MACRO LCORCH tupla_valores RCORCH
+Rule 9     asignacion -> LET ID EQUAL VEC TURBO_FISH NEW LPAREN RPAREN
+Rule 10    asignacion -> LET ID EQUAL VEC MACRO LCORCH RCORCH
+Rule 11    asignacion -> LET ID EQUAL valor
+Rule 12    asignacion -> LET MUT ID EQUAL valor
+Rule 13    asignacion -> CONST ID EQUAL valor
+Rule 14    asignacion -> LET ID DOUBLE_POINT TIPO_INT EQUAL NUMBER
+Rule 15    asignacion -> LET ID DOUBLE_POINT TIPO_CHAR EQUAL CHAR
+Rule 16    asignacion -> LET ID DOUBLE_POINT TIPO_STRING EQUAL STRING
+Rule 17    asignacion -> LET MUT ID EQUAL tipo_de_dato TURBO_FISH NEW LPAREN RPAREN
+Rule 18    asignacion -> LET ID DOUBLE_POINT tupla_asignacion EQUAL tupla_declaracion
+Rule 19    asignacion -> LET ID EQUAL tupla_declaracion
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 Rule 20    tupla_asignacion -> LPAREN tupla_lista_de_datos RPAREN
 Rule 21    declaracion -> LET
 Rule 22    declaracion -> LET MUT
@@ -218,6 +236,7 @@ state 0
     (2) cuerpo -> . operaciones
     (3) cuerpo -> . comparaciones
     (4) cuerpo -> . definir_funcion
+<<<<<<< HEAD
     (5) cuerpo -> . llamada_a_metodo
     (6) cuerpo -> . enum
     (7) cuerpo -> . print
@@ -270,6 +289,54 @@ state 0
     (54) funcion -> . FN ID LPAREN lista_parametros RPAREN
     (83) valor_numerico -> . FLOAT
     (84) valor_numerico -> . NUMBER
+=======
+    (5) cuerpo -> . print
+    (6) cuerpo -> . library_call
+    (7) asignacion -> . LET ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC MACRO LCORCH tupla_valores RCORCH
+    (8) asignacion -> . LET ID EQUAL VEC MACRO LCORCH tupla_valores RCORCH
+    (9) asignacion -> . LET ID EQUAL VEC TURBO_FISH NEW LPAREN RPAREN
+    (10) asignacion -> . LET ID EQUAL VEC MACRO LCORCH RCORCH
+    (11) asignacion -> . LET ID EQUAL valor
+    (12) asignacion -> . LET MUT ID EQUAL valor
+    (13) asignacion -> . CONST ID EQUAL valor
+    (14) asignacion -> . LET ID DOUBLE_POINT TIPO_INT EQUAL NUMBER
+    (15) asignacion -> . LET ID DOUBLE_POINT TIPO_CHAR EQUAL CHAR
+    (16) asignacion -> . LET ID DOUBLE_POINT TIPO_STRING EQUAL STRING
+    (17) asignacion -> . LET MUT ID EQUAL tipo_de_dato TURBO_FISH NEW LPAREN RPAREN
+    (18) asignacion -> . LET ID DOUBLE_POINT tupla_asignacion EQUAL tupla_declaracion
+    (19) asignacion -> . LET ID EQUAL tupla_declaracion
+    (33) operaciones -> . suma
+    (34) operaciones -> . resta
+    (35) operaciones -> . multiplicacion
+    (36) operaciones -> . division
+    (44) comparaciones -> . menor
+    (45) comparaciones -> . menor_igual
+    (46) comparaciones -> . mayor
+    (47) comparaciones -> . mayor_igual
+    (48) comparaciones -> . igual
+    (26) definir_funcion -> . funcion_main
+    (27) definir_funcion -> . funcion
+    (64) print -> . PRINTLN MACRO LPAREN valor RPAREN
+    (65) print -> . PRINTLN LPAREN NUMBER RPAREN
+    (66) library_call -> . USE library_path
+    (37) suma -> . valor_numerico PLUS valor_numerico
+    (38) suma -> . suma PLUS valor_numerico
+    (39) resta -> . valor_numerico MINUS valor_numerico
+    (40) resta -> . resta MINUS valor_numerico
+    (41) multiplicacion -> . valor_numerico TIMES valor_numerico
+    (42) multiplicacion -> . multiplicacion TIMES valor_numerico
+    (43) division -> . valor_numerico DIVIDE valor_numerico
+    (49) menor -> . valor_numerico LESS valor_numerico
+    (50) menor_igual -> . valor_numerico LESS EQUAL valor_numerico
+    (51) mayor -> . valor_numerico GREAT valor_numerico
+    (52) mayor_igual -> . valor_numerico GREAT EQUAL valor_numerico
+    (53) igual -> . valor_numerico EQUAL EQUAL valor_numerico
+    (28) funcion_main -> . FN MAIN LPAREN RPAREN
+    (29) funcion -> . FN ID LPAREN RPAREN
+    (30) funcion -> . FN ID LPAREN lista_parametros RPAREN
+    (62) valor_numerico -> . FLOAT
+    (63) valor_numerico -> . NUMBER
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
     ID              shift and go to state 11
     ENUM            shift and go to state 24
@@ -354,7 +421,22 @@ state 7
 
 state 8
 
+<<<<<<< HEAD
     (7) cuerpo -> print .
+=======
+    (7) asignacion -> LET . ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC MACRO LCORCH tupla_valores RCORCH
+    (8) asignacion -> LET . ID EQUAL VEC MACRO LCORCH tupla_valores RCORCH
+    (9) asignacion -> LET . ID EQUAL VEC TURBO_FISH NEW LPAREN RPAREN
+    (10) asignacion -> LET . ID EQUAL VEC MACRO LCORCH RCORCH
+    (11) asignacion -> LET . ID EQUAL valor
+    (12) asignacion -> LET . MUT ID EQUAL valor
+    (14) asignacion -> LET . ID DOUBLE_POINT TIPO_INT EQUAL NUMBER
+    (15) asignacion -> LET . ID DOUBLE_POINT TIPO_CHAR EQUAL CHAR
+    (16) asignacion -> LET . ID DOUBLE_POINT TIPO_STRING EQUAL STRING
+    (17) asignacion -> LET . MUT ID EQUAL tipo_de_dato TURBO_FISH NEW LPAREN RPAREN
+    (18) asignacion -> LET . ID DOUBLE_POINT tupla_asignacion EQUAL tupla_declaracion
+    (19) asignacion -> LET . ID EQUAL tupla_declaracion
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
     $end            reduce using rule 7 (cuerpo -> print .)
 
@@ -380,8 +462,22 @@ state 10
     (18) asignacion -> declaracion . DOUBLE_POINT tupla_asignacion EQUAL tupla_declaracion
     (19) asignacion -> declaracion . ID EQUAL tupla_declaracion
 
+<<<<<<< HEAD
     ID              shift and go to state 32
     DOUBLE_POINT    shift and go to state 33
+=======
+    PLUS            reduce using rule 63 (valor_numerico -> NUMBER .)
+    MINUS           reduce using rule 63 (valor_numerico -> NUMBER .)
+    TIMES           reduce using rule 63 (valor_numerico -> NUMBER .)
+    DIVIDE          reduce using rule 63 (valor_numerico -> NUMBER .)
+    LESS            reduce using rule 63 (valor_numerico -> NUMBER .)
+    GREAT           reduce using rule 63 (valor_numerico -> NUMBER .)
+    EQUAL           reduce using rule 63 (valor_numerico -> NUMBER .)
+    $end            reduce using rule 63 (valor_numerico -> NUMBER .)
+    RPAREN          reduce using rule 63 (valor_numerico -> NUMBER .)
+    COMA            reduce using rule 63 (valor_numerico -> NUMBER .)
+    RCORCH          reduce using rule 63 (valor_numerico -> NUMBER .)
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
 
 state 11
@@ -514,14 +610,41 @@ state 26
     (88) library_path -> . ID
     (89) library_path -> . ID TURBO_FISH library_path
 
+<<<<<<< HEAD
     ID              shift and go to state 42
+=======
+    PLUS            reduce using rule 62 (valor_numerico -> FLOAT .)
+    MINUS           reduce using rule 62 (valor_numerico -> FLOAT .)
+    TIMES           reduce using rule 62 (valor_numerico -> FLOAT .)
+    DIVIDE          reduce using rule 62 (valor_numerico -> FLOAT .)
+    LESS            reduce using rule 62 (valor_numerico -> FLOAT .)
+    GREAT           reduce using rule 62 (valor_numerico -> FLOAT .)
+    EQUAL           reduce using rule 62 (valor_numerico -> FLOAT .)
+    $end            reduce using rule 62 (valor_numerico -> FLOAT .)
+    RPAREN          reduce using rule 62 (valor_numerico -> FLOAT .)
+    COMA            reduce using rule 62 (valor_numerico -> FLOAT .)
+    RCORCH          reduce using rule 62 (valor_numerico -> FLOAT .)
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
     library_path                   shift and go to state 41
 
 state 27
 
+<<<<<<< HEAD
     (21) declaracion -> LET .
     (22) declaracion -> LET . MUT
+=======
+    (7) asignacion -> LET ID . DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC MACRO LCORCH tupla_valores RCORCH
+    (8) asignacion -> LET ID . EQUAL VEC MACRO LCORCH tupla_valores RCORCH
+    (9) asignacion -> LET ID . EQUAL VEC TURBO_FISH NEW LPAREN RPAREN
+    (10) asignacion -> LET ID . EQUAL VEC MACRO LCORCH RCORCH
+    (11) asignacion -> LET ID . EQUAL valor
+    (14) asignacion -> LET ID . DOUBLE_POINT TIPO_INT EQUAL NUMBER
+    (15) asignacion -> LET ID . DOUBLE_POINT TIPO_CHAR EQUAL CHAR
+    (16) asignacion -> LET ID . DOUBLE_POINT TIPO_STRING EQUAL STRING
+    (18) asignacion -> LET ID . DOUBLE_POINT tupla_asignacion EQUAL tupla_declaracion
+    (19) asignacion -> LET ID . EQUAL tupla_declaracion
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
     ID              reduce using rule 21 (declaracion -> LET .)
     DOUBLE_POINT    reduce using rule 21 (declaracion -> LET .)
@@ -731,9 +854,18 @@ state 45
 
 state 46
 
+<<<<<<< HEAD
     (37) multiplicacion -> valor_numerico TIMES . valor_numerico
     (83) valor_numerico -> . FLOAT
     (84) valor_numerico -> . NUMBER
+=======
+    (7) asignacion -> LET ID DOUBLE_POINT . VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC MACRO LCORCH tupla_valores RCORCH
+    (14) asignacion -> LET ID DOUBLE_POINT . TIPO_INT EQUAL NUMBER
+    (15) asignacion -> LET ID DOUBLE_POINT . TIPO_CHAR EQUAL CHAR
+    (16) asignacion -> LET ID DOUBLE_POINT . TIPO_STRING EQUAL STRING
+    (18) asignacion -> LET ID DOUBLE_POINT . tupla_asignacion EQUAL tupla_declaracion
+    (20) tupla_asignacion -> . LPAREN tupla_lista_de_datos RPAREN
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
     FLOAT           shift and go to state 31
     NUMBER          shift and go to state 12
@@ -742,9 +874,24 @@ state 46
 
 state 47
 
+<<<<<<< HEAD
     (39) division -> valor_numerico DIVIDE . valor_numerico
     (83) valor_numerico -> . FLOAT
     (84) valor_numerico -> . NUMBER
+=======
+    (8) asignacion -> LET ID EQUAL . VEC MACRO LCORCH tupla_valores RCORCH
+    (9) asignacion -> LET ID EQUAL . VEC TURBO_FISH NEW LPAREN RPAREN
+    (10) asignacion -> LET ID EQUAL . VEC MACRO LCORCH RCORCH
+    (11) asignacion -> LET ID EQUAL . valor
+    (19) asignacion -> LET ID EQUAL . tupla_declaracion
+    (58) valor -> . valor_numerico
+    (59) valor -> . STRING
+    (60) valor -> . CHAR
+    (61) valor -> . BOOL
+    (21) tupla_declaracion -> . LPAREN tupla_valores RPAREN
+    (62) valor_numerico -> . FLOAT
+    (63) valor_numerico -> . NUMBER
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
     FLOAT           shift and go to state 31
     NUMBER          shift and go to state 12
@@ -973,6 +1120,7 @@ state 66
 
 state 67
 
+<<<<<<< HEAD
     (85) print -> PRINTLN MACRO LPAREN . valor RPAREN
     (79) valor -> . valor_numerico
     (80) valor -> . STRING
@@ -980,6 +1128,9 @@ state 67
     (82) valor -> . BOOL
     (83) valor_numerico -> . FLOAT
     (84) valor_numerico -> . NUMBER
+=======
+    (7) asignacion -> LET ID DOUBLE_POINT VEC_OBJ . LESS tipo_de_dato GREAT EQUAL VEC MACRO LCORCH tupla_valores RCORCH
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
     STRING          shift and go to state 91
     CHAR            shift and go to state 92
@@ -992,7 +1143,179 @@ state 67
 
 state 68
 
+<<<<<<< HEAD
     (86) print -> PRINTLN LPAREN NUMBER . RPAREN
+=======
+    (14) asignacion -> LET ID DOUBLE_POINT TIPO_INT . EQUAL NUMBER
+
+    EQUAL           shift and go to state 94
+
+
+state 69
+
+    (15) asignacion -> LET ID DOUBLE_POINT TIPO_CHAR . EQUAL CHAR
+
+    EQUAL           shift and go to state 95
+
+
+state 70
+
+    (16) asignacion -> LET ID DOUBLE_POINT TIPO_STRING . EQUAL STRING
+
+    EQUAL           shift and go to state 96
+
+
+state 71
+
+    (18) asignacion -> LET ID DOUBLE_POINT tupla_asignacion . EQUAL tupla_declaracion
+
+    EQUAL           shift and go to state 97
+
+
+state 72
+
+    (20) tupla_asignacion -> LPAREN . tupla_lista_de_datos RPAREN
+    (22) tupla_lista_de_datos -> . tipo_de_dato
+    (23) tupla_lista_de_datos -> . tipo_de_dato COMA tupla_lista_de_datos
+    (54) tipo_de_dato -> . TIPO_STRING
+    (55) tipo_de_dato -> . TIPO_BOOL
+    (56) tipo_de_dato -> . TIPO_CHAR
+    (57) tipo_de_dato -> . TIPO_INT
+
+    TIPO_STRING     shift and go to state 100
+    TIPO_BOOL       shift and go to state 101
+    TIPO_CHAR       shift and go to state 102
+    TIPO_INT        shift and go to state 103
+
+    tupla_lista_de_datos           shift and go to state 98
+    tipo_de_dato                   shift and go to state 99
+
+state 73
+
+    (8) asignacion -> LET ID EQUAL VEC . MACRO LCORCH tupla_valores RCORCH
+    (9) asignacion -> LET ID EQUAL VEC . TURBO_FISH NEW LPAREN RPAREN
+    (10) asignacion -> LET ID EQUAL VEC . MACRO LCORCH RCORCH
+
+    MACRO           shift and go to state 104
+    TURBO_FISH      shift and go to state 105
+
+
+state 74
+
+    (21) tupla_declaracion -> LPAREN . tupla_valores RPAREN
+    (24) tupla_valores -> . valor
+    (25) tupla_valores -> . valor COMA tupla_valores
+    (58) valor -> . valor_numerico
+    (59) valor -> . STRING
+    (60) valor -> . CHAR
+    (61) valor -> . BOOL
+    (62) valor_numerico -> . FLOAT
+    (63) valor_numerico -> . NUMBER
+
+    STRING          shift and go to state 78
+    CHAR            shift and go to state 79
+    BOOL            shift and go to state 80
+    FLOAT           shift and go to state 26
+    NUMBER          shift and go to state 10
+
+    tupla_valores                  shift and go to state 106
+    valor                          shift and go to state 107
+    valor_numerico                 shift and go to state 77
+
+state 75
+
+    (11) asignacion -> LET ID EQUAL valor .
+
+    $end            reduce using rule 11 (asignacion -> LET ID EQUAL valor .)
+
+
+state 76
+
+    (19) asignacion -> LET ID EQUAL tupla_declaracion .
+
+    $end            reduce using rule 19 (asignacion -> LET ID EQUAL tupla_declaracion .)
+
+
+state 77
+
+    (58) valor -> valor_numerico .
+
+    $end            reduce using rule 58 (valor -> valor_numerico .)
+    RPAREN          reduce using rule 58 (valor -> valor_numerico .)
+    COMA            reduce using rule 58 (valor -> valor_numerico .)
+    RCORCH          reduce using rule 58 (valor -> valor_numerico .)
+
+
+state 78
+
+    (59) valor -> STRING .
+
+    $end            reduce using rule 59 (valor -> STRING .)
+    RPAREN          reduce using rule 59 (valor -> STRING .)
+    COMA            reduce using rule 59 (valor -> STRING .)
+    RCORCH          reduce using rule 59 (valor -> STRING .)
+
+
+state 79
+
+    (60) valor -> CHAR .
+
+    $end            reduce using rule 60 (valor -> CHAR .)
+    RPAREN          reduce using rule 60 (valor -> CHAR .)
+    COMA            reduce using rule 60 (valor -> CHAR .)
+    RCORCH          reduce using rule 60 (valor -> CHAR .)
+
+
+state 80
+
+    (61) valor -> BOOL .
+
+    $end            reduce using rule 61 (valor -> BOOL .)
+    RPAREN          reduce using rule 61 (valor -> BOOL .)
+    COMA            reduce using rule 61 (valor -> BOOL .)
+    RCORCH          reduce using rule 61 (valor -> BOOL .)
+
+
+state 81
+
+    (12) asignacion -> LET MUT ID EQUAL . valor
+    (17) asignacion -> LET MUT ID EQUAL . tipo_de_dato TURBO_FISH NEW LPAREN RPAREN
+    (58) valor -> . valor_numerico
+    (59) valor -> . STRING
+    (60) valor -> . CHAR
+    (61) valor -> . BOOL
+    (54) tipo_de_dato -> . TIPO_STRING
+    (55) tipo_de_dato -> . TIPO_BOOL
+    (56) tipo_de_dato -> . TIPO_CHAR
+    (57) tipo_de_dato -> . TIPO_INT
+    (62) valor_numerico -> . FLOAT
+    (63) valor_numerico -> . NUMBER
+
+    STRING          shift and go to state 78
+    CHAR            shift and go to state 79
+    BOOL            shift and go to state 80
+    TIPO_STRING     shift and go to state 100
+    TIPO_BOOL       shift and go to state 101
+    TIPO_CHAR       shift and go to state 102
+    TIPO_INT        shift and go to state 103
+    FLOAT           shift and go to state 26
+    NUMBER          shift and go to state 10
+
+    valor                          shift and go to state 108
+    tipo_de_dato                   shift and go to state 109
+    valor_numerico                 shift and go to state 77
+
+state 82
+
+    (13) asignacion -> CONST ID EQUAL valor .
+
+    $end            reduce using rule 13 (asignacion -> CONST ID EQUAL valor .)
+
+
+state 83
+
+    (64) print -> PRINTLN MACRO LPAREN valor . RPAREN
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
     RPAREN          shift and go to state 110
 
@@ -1217,7 +1540,15 @@ state 92
 
 state 93
 
+<<<<<<< HEAD
     (82) valor -> BOOL .
+=======
+    (7) asignacion -> LET ID DOUBLE_POINT VEC_OBJ LESS . tipo_de_dato GREAT EQUAL VEC MACRO LCORCH tupla_valores RCORCH
+    (54) tipo_de_dato -> . TIPO_STRING
+    (55) tipo_de_dato -> . TIPO_BOOL
+    (56) tipo_de_dato -> . TIPO_CHAR
+    (57) tipo_de_dato -> . TIPO_INT
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
     $end            reduce using rule 82 (valor -> BOOL .)
     RPAREN          reduce using rule 82 (valor -> BOOL .)
@@ -1330,30 +1661,51 @@ state 103
 
 state 104
 
+<<<<<<< HEAD
     (65) enum -> ENUM ID LLLAV lista_enum . RLLAV
 
     RLLAV           shift and go to state 137
+=======
+    (8) asignacion -> LET ID EQUAL VEC MACRO . LCORCH tupla_valores RCORCH
+    (10) asignacion -> LET ID EQUAL VEC MACRO . LCORCH RCORCH
+
+    LCORCH          shift and go to state 120
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
 
 state 105
 
     (66) lista_enum -> lista_enum_id .
 
+<<<<<<< HEAD
     RLLAV           reduce using rule 66 (lista_enum -> lista_enum_id .)
+=======
+    NEW             shift and go to state 121
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
 
 state 106
 
     (67) lista_enum -> lista_enum_id_tipo .
 
+<<<<<<< HEAD
     RLLAV           reduce using rule 67 (lista_enum -> lista_enum_id_tipo .)
+=======
+    RPAREN          shift and go to state 122
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
 
 state 107
 
     (68) lista_enum -> lista_enum_tipo .
 
+<<<<<<< HEAD
     RLLAV           reduce using rule 68 (lista_enum -> lista_enum_tipo .)
+=======
+    RPAREN          reduce using rule 24 (tupla_valores -> valor .)
+    RCORCH          reduce using rule 24 (tupla_valores -> valor .)
+    COMA            shift and go to state 123
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
 
 state 108
@@ -1369,7 +1721,11 @@ state 109
 
     (85) print -> PRINTLN MACRO LPAREN valor . RPAREN
 
+<<<<<<< HEAD
     RPAREN          shift and go to state 139
+=======
+    TURBO_FISH      shift and go to state 124
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
 
 state 110
@@ -1385,6 +1741,10 @@ state 111
 
     $end            reduce using rule 89 (library_path -> ID TURBO_FISH library_path .)
 
+<<<<<<< HEAD
+=======
+    tipo_de_dato                   shift and go to state 125
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
 state 112
 
@@ -1395,9 +1755,15 @@ state 112
 
 state 113
 
+<<<<<<< HEAD
     (49) igual -> valor_numerico EQUAL EQUAL valor_numerico .
 
     $end            reduce using rule 49 (igual -> valor_numerico EQUAL EQUAL valor_numerico .)
+=======
+    (7) asignacion -> LET ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato . GREAT EQUAL VEC MACRO LCORCH tupla_valores RCORCH
+
+    GREAT           shift and go to state 126
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
 
 state 114
@@ -1525,6 +1891,7 @@ state 129
     EQUAL           reduce using rule 20 (tupla_asignacion -> LPAREN tupla_lista_de_datos RPAREN .)
 
 
+<<<<<<< HEAD
 state 130
 
     (26) tupla_lista_de_datos -> tipo_de_dato COMA . tupla_lista_de_datos
@@ -1539,12 +1906,142 @@ state 130
     TIPO_BOOL       shift and go to state 95
     TIPO_CHAR       shift and go to state 96
     TIPO_INT        shift and go to state 97
+=======
+state 119
+
+    (23) tupla_lista_de_datos -> tipo_de_dato COMA . tupla_lista_de_datos
+    (22) tupla_lista_de_datos -> . tipo_de_dato
+    (23) tupla_lista_de_datos -> . tipo_de_dato COMA tupla_lista_de_datos
+    (54) tipo_de_dato -> . TIPO_STRING
+    (55) tipo_de_dato -> . TIPO_BOOL
+    (56) tipo_de_dato -> . TIPO_CHAR
+    (57) tipo_de_dato -> . TIPO_INT
+
+    TIPO_STRING     shift and go to state 100
+    TIPO_BOOL       shift and go to state 101
+    TIPO_CHAR       shift and go to state 102
+    TIPO_INT        shift and go to state 103
+
+    tipo_de_dato                   shift and go to state 99
+    tupla_lista_de_datos           shift and go to state 127
+
+state 120
+
+    (8) asignacion -> LET ID EQUAL VEC MACRO LCORCH . tupla_valores RCORCH
+    (10) asignacion -> LET ID EQUAL VEC MACRO LCORCH . RCORCH
+    (24) tupla_valores -> . valor
+    (25) tupla_valores -> . valor COMA tupla_valores
+    (58) valor -> . valor_numerico
+    (59) valor -> . STRING
+    (60) valor -> . CHAR
+    (61) valor -> . BOOL
+    (62) valor_numerico -> . FLOAT
+    (63) valor_numerico -> . NUMBER
+
+    RCORCH          shift and go to state 129
+    STRING          shift and go to state 78
+    CHAR            shift and go to state 79
+    BOOL            shift and go to state 80
+    FLOAT           shift and go to state 26
+    NUMBER          shift and go to state 10
+
+    tupla_valores                  shift and go to state 128
+    valor                          shift and go to state 107
+    valor_numerico                 shift and go to state 77
+
+state 121
+
+    (9) asignacion -> LET ID EQUAL VEC TURBO_FISH NEW . LPAREN RPAREN
+
+    LPAREN          shift and go to state 130
+
+
+state 122
+
+    (21) tupla_declaracion -> LPAREN tupla_valores RPAREN .
+
+    $end            reduce using rule 21 (tupla_declaracion -> LPAREN tupla_valores RPAREN .)
+
+
+state 123
+
+    (25) tupla_valores -> valor COMA . tupla_valores
+    (24) tupla_valores -> . valor
+    (25) tupla_valores -> . valor COMA tupla_valores
+    (58) valor -> . valor_numerico
+    (59) valor -> . STRING
+    (60) valor -> . CHAR
+    (61) valor -> . BOOL
+    (62) valor_numerico -> . FLOAT
+    (63) valor_numerico -> . NUMBER
+
+    STRING          shift and go to state 78
+    CHAR            shift and go to state 79
+    BOOL            shift and go to state 80
+    FLOAT           shift and go to state 26
+    NUMBER          shift and go to state 10
+
+    valor                          shift and go to state 107
+    tupla_valores                  shift and go to state 131
+    valor_numerico                 shift and go to state 77
+
+state 124
+
+    (17) asignacion -> LET MUT ID EQUAL tipo_de_dato TURBO_FISH . NEW LPAREN RPAREN
+
+    NEW             shift and go to state 132
+
+
+state 125
+
+    (31) lista_parametros -> ID DOUBLE_POINT tipo_de_dato .
+    (32) lista_parametros -> ID DOUBLE_POINT tipo_de_dato . COMA lista_parametros
+
+    RPAREN          reduce using rule 31 (lista_parametros -> ID DOUBLE_POINT tipo_de_dato .)
+    COMA            shift and go to state 133
+
+
+state 126
+
+    (7) asignacion -> LET ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT . EQUAL VEC MACRO LCORCH tupla_valores RCORCH
+
+    EQUAL           shift and go to state 134
+
+
+state 127
+
+    (23) tupla_lista_de_datos -> tipo_de_dato COMA tupla_lista_de_datos .
+
+    RPAREN          reduce using rule 23 (tupla_lista_de_datos -> tipo_de_dato COMA tupla_lista_de_datos .)
+
+
+state 128
+
+    (8) asignacion -> LET ID EQUAL VEC MACRO LCORCH tupla_valores . RCORCH
+
+    RCORCH          shift and go to state 135
+
+
+state 129
+
+    (10) asignacion -> LET ID EQUAL VEC MACRO LCORCH RCORCH .
+
+    $end            reduce using rule 10 (asignacion -> LET ID EQUAL VEC MACRO LCORCH RCORCH .)
+
+
+state 130
+
+    (9) asignacion -> LET ID EQUAL VEC TURBO_FISH NEW LPAREN . RPAREN
+
+    RPAREN          shift and go to state 136
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
     tipo_de_dato                   shift and go to state 100
     tupla_lista_de_datos           shift and go to state 151
 
 state 131
 
+<<<<<<< HEAD
     (61) pop_method -> POP LPAREN RPAREN .
 
     $end            reduce using rule 61 (pop_method -> POP LPAREN RPAREN .)
@@ -1555,21 +2052,32 @@ state 132
     (62) pop_method -> POP LPAREN NUMBER . RPAREN
 
     RPAREN          shift and go to state 152
+=======
+    (25) tupla_valores -> valor COMA tupla_valores .
+
+    RPAREN          reduce using rule 25 (tupla_valores -> valor COMA tupla_valores .)
+    RCORCH          reduce using rule 25 (tupla_valores -> valor COMA tupla_valores .)
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
 
-state 133
+state 132
 
     (63) push_method -> PUSH LPAREN RPAREN .
 
+<<<<<<< HEAD
     $end            reduce using rule 63 (push_method -> PUSH LPAREN RPAREN .)
+=======
+    LPAREN          shift and go to state 137
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
 
-state 134
+state 133
 
     (64) push_method -> PUSH LPAREN NUMBER . RPAREN
 
     RPAREN          shift and go to state 153
 
+<<<<<<< HEAD
 
 state 135
 
@@ -1589,6 +2097,20 @@ state 136
     (76) tipo_de_dato -> . TIPO_BOOL
     (77) tipo_de_dato -> . TIPO_CHAR
     (78) tipo_de_dato -> . TIPO_INT
+=======
+    lista_parametros               shift and go to state 138
+
+state 134
+
+    (7) asignacion -> LET ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL . VEC MACRO LCORCH tupla_valores RCORCH
+
+    VEC             shift and go to state 139
+
+
+state 135
+
+    (8) asignacion -> LET ID EQUAL VEC MACRO LCORCH tupla_valores RCORCH .
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
     TIPO_STRING     shift and go to state 94
     TIPO_BOOL       shift and go to state 95
@@ -1597,14 +2119,14 @@ state 136
 
     tipo_de_dato                   shift and go to state 156
 
-state 137
+state 136
 
     (65) enum -> ENUM ID LLLAV lista_enum RLLAV .
 
     $end            reduce using rule 65 (enum -> ENUM ID LLLAV lista_enum RLLAV .)
 
 
-state 138
+state 137
 
     (74) lista_enum_tipo -> tipo_de_dato COMA . lista_enum_tipo
     (73) lista_enum_tipo -> . tipo_de_dato
@@ -1614,23 +2136,35 @@ state 138
     (77) tipo_de_dato -> . TIPO_CHAR
     (78) tipo_de_dato -> . TIPO_INT
 
+<<<<<<< HEAD
     TIPO_STRING     shift and go to state 94
     TIPO_BOOL       shift and go to state 95
     TIPO_CHAR       shift and go to state 96
     TIPO_INT        shift and go to state 97
+=======
+    RPAREN          shift and go to state 140
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
     tipo_de_dato                   shift and go to state 108
     lista_enum_tipo                shift and go to state 157
 
-state 139
+state 138
 
     (85) print -> PRINTLN MACRO LPAREN valor RPAREN .
 
     $end            reduce using rule 85 (print -> PRINTLN MACRO LPAREN valor RPAREN .)
 
 
+state 139
+
+    (7) asignacion -> LET ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC . MACRO LCORCH tupla_valores RCORCH
+
+    MACRO           shift and go to state 141
+
+
 state 140
 
+<<<<<<< HEAD
     (55) lista_parametros -> ID DOUBLE_POINT . tipo_de_dato
     (56) lista_parametros -> ID DOUBLE_POINT . tipo_de_dato COMA lista_parametros
     (75) tipo_de_dato -> . TIPO_STRING
@@ -1648,12 +2182,23 @@ state 140
 state 141
 
     (54) funcion -> FN ID LPAREN lista_parametros RPAREN .
+=======
+    (17) asignacion -> LET MUT ID EQUAL tipo_de_dato TURBO_FISH NEW LPAREN RPAREN .
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
     $end            reduce using rule 54 (funcion -> FN ID LPAREN lista_parametros RPAREN .)
 
 
+state 141
+
+    (7) asignacion -> LET ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC MACRO . LCORCH tupla_valores RCORCH
+
+    LCORCH          shift and go to state 142
+
+
 state 142
 
+<<<<<<< HEAD
     (9) asignacion -> declaracion ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato . GREAT EQUAL VEC MACRO LCORCH tupla_valores RCORCH
 
     GREAT           shift and go to state 159
@@ -1662,12 +2207,37 @@ state 142
 state 143
 
     (14) asignacion -> declaracion ID DOUBLE_POINT TIPO_INT EQUAL NUMBER .
+=======
+    (7) asignacion -> LET ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC MACRO LCORCH . tupla_valores RCORCH
+    (24) tupla_valores -> . valor
+    (25) tupla_valores -> . valor COMA tupla_valores
+    (58) valor -> . valor_numerico
+    (59) valor -> . STRING
+    (60) valor -> . CHAR
+    (61) valor -> . BOOL
+    (62) valor_numerico -> . FLOAT
+    (63) valor_numerico -> . NUMBER
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
     $end            reduce using rule 14 (asignacion -> declaracion ID DOUBLE_POINT TIPO_INT EQUAL NUMBER .)
+
+<<<<<<< HEAD
+=======
+    tupla_valores                  shift and go to state 143
+    valor                          shift and go to state 107
+    valor_numerico                 shift and go to state 77
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
+
+state 143
+
+    (7) asignacion -> LET ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC MACRO LCORCH tupla_valores . RCORCH
+
+    RCORCH          shift and go to state 144
 
 
 state 144
 
+<<<<<<< HEAD
     (15) asignacion -> declaracion ID DOUBLE_POINT TIPO_CHAR EQUAL CHAR .
 
     $end            reduce using rule 15 (asignacion -> declaracion ID DOUBLE_POINT TIPO_CHAR EQUAL CHAR .)
@@ -1963,4 +2533,9 @@ state 177
     (9) asignacion -> declaracion ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC MACRO LCORCH tupla_valores RCORCH .
 
     $end            reduce using rule 9 (asignacion -> declaracion ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC MACRO LCORCH tupla_valores RCORCH .)
+=======
+    (7) asignacion -> LET ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC MACRO LCORCH tupla_valores RCORCH .
+
+    $end            reduce using rule 7 (asignacion -> LET ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC MACRO LCORCH tupla_valores RCORCH .)
+>>>>>>> 95730653e416b1c232b0228add024a64841366b7
 
