@@ -28,7 +28,10 @@ reserved = {
   'Vec': 'VEC_OBJ',
   'vec' : 'VEC',
   'use' : 'USE',
-  'char': 'TIPO_CHAR'
+  'char': 'TIPO_CHAR',
+  'push' : 'PUSH',
+  'pop' : 'POP',
+  'enum' : 'ENUM'
 }
 #Agregue todos los tokens solicitados
 tokens = [
