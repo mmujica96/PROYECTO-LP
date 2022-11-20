@@ -103,6 +103,22 @@ def p_mayor_igual(p):
 def p_igual(p):
   """igual : valor_numerico EQUAL EQUAL valor_numerico"""
 
+
+  #Operaciones logicas -- Michelle Mujica
+def p_operacionLogica(p):
+    """operacionLogica : and
+                        |or
+                        |not"""
+
+                      
+def p_AND(p):
+  """and : LPAREN condicion1 RPAREN AND LPAREN condicion2 RPAREN"""
+
+def p_OR(p):
+  'OR : LPAREN condicion1 RPAREN OR LPAREN condicion2 RPAREN'
+
+def p_OR(p):
+  'NOT : condicion1 NOT condicion2'
 ##BNF PARA MANEJO DE DATOS - HANS RAMOS 
 def p_tipo_de_dato(p):
   """tipo_de_dato : TIPO_STRING
