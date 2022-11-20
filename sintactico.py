@@ -9,6 +9,12 @@ def p_cuerpo(p):
             | print
             | library_call"""
 
+
+def p_booleano(p):
+    '''booleano : TRUE
+                | FALSE
+    '''
+
 ##ASIGNACION - HANS RAMOS
 
 ## problema haciendo una regla que englobe (let , let mut, const) en una sola llamada asignacion, arreglar
@@ -105,11 +111,19 @@ def p_igual(p):
 
 
   #Operaciones logicas -- Michelle Mujica
-def p_operacionLogica(p):
-    """operacionLogica : and
-                        |or
-                        |not"""
+def p_operadorLogico(p):
+    """operacionLogica : AND
+                        |OR
+                        |NOT"""
 
+def p_operacionLogica(p):
+    'operacionLogica : valor repite_operacionLogica'
+
+
+def p_repite_operacionLogica(p):
+    '''repite_operacionLogica : operadorLogico valor
+                              | operadorLogico valor repite_operacionLogica
+    '''
                       
 def p_AND(p):
   """and : LPAREN condicion1 RPAREN AND LPAREN condicion2 RPAREN"""
@@ -139,7 +153,7 @@ def p_valor_numerico(p):
 ##EXTRAS
 def p_print(p):
   """print  : PRINTLN MACRO LPAREN valor RPAREN
-            | PRINTLN LPAREN NUMBER RPAREN"""
+            | PRINTLN LPAREN valor RPAREN"""
 
 def p_library_call(p):
   """library_call : USE library_path"""
