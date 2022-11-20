@@ -30,7 +30,10 @@ reserved = {
   'use' : 'USE',
   'char': 'TIPO_CHAR',
   'true' : 'TRUE',
-  'false' : 'FALSE'
+  'false' : 'FALSE',
+  'push' : 'PUSH',
+  'pop' : 'POP',
+  'enum' : 'ENUM'
 }
 #Agregue todos los tokens solicitados
 tokens = [
