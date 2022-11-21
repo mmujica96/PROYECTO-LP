@@ -51,8 +51,8 @@ reserved = {
 #Agregue todos los tokens solicitados
 tokens = [
   'NUMBER', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'LPAREN', 'RPAREN', 'RCOM','TIPO_INT',
-  'LLLAV', 'RLLAV', 'ID','MACRO', 'LESS', 'GREAT', 'STRING', 'EQUAL', 'PUNTO_COMA','FLOAT','COMA','PUNTO', 'CHAR', 'TURBO_FISH', 'RCORCH',
-   'LCORCH','BOOL', 'DOUBLE_POINT', 'AND', 'NOT', 'OR'
+  'LLLAV', 'RLLAV', 'ID','MACRONOT', 'LESS', 'GREAT', 'STRING', 'EQUAL', 'PUNTO_COMA','FLOAT','COMA','PUNTO', 'CHAR', 'TURBO_FISH', 'RCORCH',
+   'LCORCH','BOOL', 'DOUBLE_POINT', 'AND', 'OR' #'NOT'
 ] + list(reserved.values())
 
 #Agregue sus Expresiones Regulares y o Funciones
@@ -65,10 +65,10 @@ t_RPAREN = r'\)'
 t_ignore_RCOM = r'//[\S ]*'
 t_LLLAV = r'\{'
 t_RLLAV = r'\}'
-t_MACRO=r'!'
+t_MACRONOT=r'!'
 t_LESS=r'\<'
 t_GREAT=r'\>'
-t_STRING=r'"[\S ]*"'
+t_STRING=r'"[a-zA-Z]*"'
 t_EQUAL=r'='
 t_PUNTO_COMA= r';'
 t_COMA=r','
@@ -79,7 +79,7 @@ t_LCORCH=r'\['
 t_RCORCH=r'\]'
 t_DOUBLE_POINT=r'\:'
 t_AND=r'\&'
-t_NOT=r'\!'
+#t_NOT=r'\!'
 t_OR=r'\|' 
 
 

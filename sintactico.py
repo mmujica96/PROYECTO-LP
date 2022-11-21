@@ -20,7 +20,7 @@ def p_cuerpo(p):
             | definir_funcion
             | llamada_a_metodo
             | enum
-            | print
+            | impresion
             | library_call"""
 
 
@@ -32,10 +32,10 @@ def p_booleano(p):
 ##ASIGNACION - HANS RAMOS
 
 def p_asignacion(p):
-  """asignacion : declaracion ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC MACRO LCORCH tupla_valores RCORCH
-                | declaracion ID EQUAL VEC MACRO LCORCH tupla_valores RCORCH
+  """asignacion : declaracion ID DOUBLE_POINT VEC_OBJ LESS tipo_de_dato GREAT EQUAL VEC MACRONOT LCORCH tupla_valores RCORCH
+                | declaracion ID EQUAL VEC MACRONOT LCORCH tupla_valores RCORCH
                 | declaracion ID EQUAL VEC TURBO_FISH NEW LPAREN RPAREN
-                | declaracion ID EQUAL VEC MACRO LCORCH RCORCH
+                | declaracion ID EQUAL VEC MACRONOT LCORCH RCORCH
                 | declaracion ID EQUAL valor
                 | declaracion ID DOUBLE_POINT TIPO_INT EQUAL NUMBER
                 | declaracion ID DOUBLE_POINT TIPO_CHAR EQUAL CHAR
@@ -63,6 +63,14 @@ def p_tupla_lista_de_datos(p):
 def p_tupla_valores(p):
   """tupla_valores : valor
                     | valor COMA tupla_valores """
+
+                    
+def p_impresion(p):
+    '''impresion : PRINTLN valor
+                  | PRINTLN MACRONOT valor
+                  | PRINTLN LPAREN valor RPAREN
+                  | PRINTLN MACRONOT LPAREN valor RPAREN
+    '''
 
 ##BNF PARA MANEJO DE DATOS - HANS RAMOS 
 def p_tipo_de_dato(p):
@@ -208,7 +216,7 @@ def p_lista_enum_tipo(p):
 def p_operadorLogico(p):
     """operadorLogico : AND
                       | OR
-                      | NOT"""
+                      | MACRONOT"""
 
 def p_operacionLogica(p):
     'operacionLogica : valor repite_operacionLogica'
@@ -230,11 +238,11 @@ def p_condicion(p):
                  | operacionLogica
     '''
 def p_bucle_condicional(p):
-    '''sentencias : IF LPAREN condicion RPAREN
-                  | IF condicion
-                  | ELSE IF LPAREN condicion RPAREN 
-                  | ELSE IF condicion
-                  | ELSE
+    '''sentencias : IF LPAREN condicion RPAREN LLLAV cuerpo RLLAV
+                  | IF condicion RPAREN LLLAV cuerpo RLLAV
+                  | ELSE IF LPAREN condicion RPAREN  RPAREN LLLAV cuerpo RLLAV
+                  | ELSE IF condicion RPAREN LLLAV cuerpo RLLAV
+                  | ELSE RPAREN LLLAV cuerpo RLLAV
     '''
 
 
@@ -247,21 +255,20 @@ def p_rangoSentencia(p):
           | """
 
 def p_bucle_for(p):
-    'bucle : FOR ID IN rango'
-
+    'bucle : FOR ID IN rango LLLAV cuerpo RLLAV'
 
 
 #Bucle while
 
 def p_bucle_while(p):
-    '''sentencias : WHILE condicion
-               | WHILE LPAREN condicion RPAREN
+    '''sentencias : WHILE condicion LLLAV cuerpo RLLAV
+               | WHILE LPAREN condicion RPAREN LLLAV cuerpo RLLAV
     '''
 
 
 ##EXTRAS
 def p_print(p):
-  """print  : PRINTLN MACRO LPAREN valor RPAREN
+  """print  : PRINTLN MACRONOT LPAREN valor RPAREN
             | PRINTLN LPAREN valor RPAREN"""
 
 def p_library_call(p):
@@ -274,10 +281,13 @@ def p_library_path(p):
 ##MANEJADOR DE ERRORES 
 def p_error(p):
   if p:
-    print(f"Error de sintaxis - Token: {p.type}, Línea: {p.lineno}, Col: {p.lexpos}")
-    parser.errok()
+    resultado = "Error Sintactico de tipo: {} en el valor: {}".format(
+      str(p.type), str(p.value))
+    print(resultado)
   else:
-    print("Error de sintaxis Fin de Linea")
+    resultado = "Error sintactico: {}".format(p)
+    print(resultado)
+    resultado_sintactico.append(resultado)
 
 #BUILD THE PARSER 
 parser = yacc.yacc(debug=True,debuglog=log)
@@ -288,7 +298,7 @@ def validaRegla(s):
 
 while True:
   try:
-    s = input('calc > ')
+    s = input('analizador > ')
   except EOFError:
     break
   if not s: continue

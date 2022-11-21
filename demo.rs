@@ -34,8 +34,17 @@ println! ("Resultado de la comparacion: {} ", c)
 
 //Condicionales validos
 
-if (x < y){
+if (x < y){}
 
 fn main() {
     println!("Hello, World!");
+}
+
+//For
+for cifra in 1..11 {
+    println!("Cifra: {}", cifra);
+  }
+// alternativa que incluye la notación del rango
+for cifra in 1..=10 {
+    println!("Cifra: {}", cifra);
 }
