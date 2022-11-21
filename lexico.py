@@ -1,5 +1,16 @@
 import ply.lex as lex
 
+import logging
+
+
+logging.basicConfig(
+    level = logging.DEBUG,
+    filename = "parselog.txt",
+    filemode = "w",
+    format = "%(filename)10s:%(lineno)4d:%(message)s"
+)
+log = logging.getLogger()
+
 #rust
 #Palabras reservadas
 #AGREGAR LOS DATOS TIPOS FLOAT f8, f16....etc
@@ -109,7 +120,7 @@ def t_error(t):
   t.lexer.skip(1)
 
 #Construya el lexer
-lexer = lex.lex()
+lexer = lex.lex(debug=True,debuglog=log)
 #Lee el archivo source.txt y retorne los tokens
 
 '''

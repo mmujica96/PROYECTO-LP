@@ -7,15 +7,11 @@ Unused terminals:
     AWAY
     BREAK
     CONTINUE
-    ELSE
-    FOR
     FROM
-    IF
     PUNTO_COMA
     RCOM
     RETURN
     STATIC
-    WHILE
 
 Grammar
 
@@ -71,102 +67,125 @@ Rule 48    resta -> resta MINUS valor_numerico
 Rule 49    multiplicacion -> valor_numerico TIMES valor_numerico
 Rule 50    multiplicacion -> multiplicacion TIMES valor_numerico
 Rule 51    division -> valor_numerico DIVIDE valor_numerico
-Rule 52    comparaciones -> menor
-Rule 53    comparaciones -> menor_igual
-Rule 54    comparaciones -> mayor
-Rule 55    comparaciones -> mayor_igual
-Rule 56    comparaciones -> igual
-Rule 57    menor -> valor_numerico LESS valor_numerico
-Rule 58    menor_igual -> valor_numerico LESS EQUAL valor_numerico
-Rule 59    mayor -> valor_numerico GREAT valor_numerico
-Rule 60    mayor_igual -> valor_numerico GREAT EQUAL valor_numerico
-Rule 61    igual -> valor_numerico EQUAL EQUAL valor_numerico
-Rule 62    definir_funcion -> funcion_main
-Rule 63    definir_funcion -> funcion
-Rule 64    funcion_main -> FN MAIN LPAREN RPAREN
-Rule 65    funcion -> FN ID LPAREN RPAREN
-Rule 66    funcion -> FN ID LPAREN lista_parametros RPAREN
-Rule 67    lista_parametros -> ID DOUBLE_POINT tipo_de_dato
-Rule 68    lista_parametros -> ID DOUBLE_POINT tipo_de_dato COMA lista_parametros
-Rule 69    llamada_a_metodo -> ID PUNTO metodo
-Rule 70    llamada_a_metodo -> ID PUNTO NUMBER
-Rule 71    metodo -> pop_method
-Rule 72    metodo -> push_method
-Rule 73    pop_method -> POP LPAREN RPAREN
-Rule 74    pop_method -> POP LPAREN NUMBER RPAREN
-Rule 75    push_method -> PUSH LPAREN RPAREN
-Rule 76    push_method -> PUSH LPAREN NUMBER RPAREN
-Rule 77    enum -> ENUM ID LLLAV lista_enum RLLAV
-Rule 78    lista_enum -> lista_enum_id
-Rule 79    lista_enum -> lista_enum_id_tipo
-Rule 80    lista_enum -> lista_enum_tipo
-Rule 81    lista_enum_id -> ID
-Rule 82    lista_enum_id -> ID COMA lista_enum_id
-Rule 83    lista_enum_id_tipo -> ID DOUBLE_POINT tipo_de_dato
-Rule 84    lista_enum_id_tipo -> ID DOUBLE_POINT tipo_de_dato lista_enum_id_tipo
-Rule 85    lista_enum_tipo -> tipo_de_dato
-Rule 86    lista_enum_tipo -> tipo_de_dato COMA lista_enum_tipo
-Rule 87    operadorLogico -> AND
-Rule 88    operadorLogico -> OR
-Rule 89    operadorLogico -> NOT
-Rule 90    operacionLogica -> valor repite_operacionLogica
-Rule 91    repite_operacionLogica -> operadorLogico valor
-Rule 92    repite_operacionLogica -> operadorLogico valor repite_operacionLogica
-Rule 93    print -> PRINTLN MACRO LPAREN valor RPAREN
-Rule 94    print -> PRINTLN LPAREN valor RPAREN
-Rule 95    library_call -> USE library_path
-Rule 96    library_path -> ID
-Rule 97    library_path -> ID TURBO_FISH library_path
+Rule 52    operacionArit -> valor repite_operacionArit
+Rule 53    repite_operacionArit -> operaciones valor
+Rule 54    repite_operacionArit -> operaciones valor repite_operacionArit
+Rule 55    comparaciones -> menor
+Rule 56    comparaciones -> menor_igual
+Rule 57    comparaciones -> mayor
+Rule 58    comparaciones -> mayor_igual
+Rule 59    comparaciones -> igual
+Rule 60    menor -> valor_numerico LESS valor_numerico
+Rule 61    menor_igual -> valor_numerico LESS EQUAL valor_numerico
+Rule 62    mayor -> valor_numerico GREAT valor_numerico
+Rule 63    mayor_igual -> valor_numerico GREAT EQUAL valor_numerico
+Rule 64    igual -> valor_numerico EQUAL EQUAL valor_numerico
+Rule 65    operacionComparacion -> valor repite_operacionComparacion
+Rule 66    repite_operacionComparacion -> comparaciones valor
+Rule 67    repite_operacionComparacion -> comparaciones valor repite_operacionComparacion
+Rule 68    definir_funcion -> funcion_main
+Rule 69    definir_funcion -> funcion
+Rule 70    funcion_main -> FN MAIN LPAREN RPAREN
+Rule 71    funcion -> FN ID LPAREN RPAREN
+Rule 72    funcion -> FN ID LPAREN lista_parametros RPAREN
+Rule 73    lista_parametros -> ID DOUBLE_POINT tipo_de_dato
+Rule 74    lista_parametros -> ID DOUBLE_POINT tipo_de_dato COMA lista_parametros
+Rule 75    llamada_a_metodo -> ID PUNTO metodo
+Rule 76    llamada_a_metodo -> ID PUNTO NUMBER
+Rule 77    metodo -> pop_method
+Rule 78    metodo -> push_method
+Rule 79    pop_method -> POP LPAREN RPAREN
+Rule 80    pop_method -> POP LPAREN NUMBER RPAREN
+Rule 81    push_method -> PUSH LPAREN RPAREN
+Rule 82    push_method -> PUSH LPAREN NUMBER RPAREN
+Rule 83    enum -> ENUM ID LLLAV lista_enum RLLAV
+Rule 84    lista_enum -> lista_enum_id
+Rule 85    lista_enum -> lista_enum_id_tipo
+Rule 86    lista_enum -> lista_enum_tipo
+Rule 87    lista_enum_id -> ID
+Rule 88    lista_enum_id -> ID COMA lista_enum_id
+Rule 89    lista_enum_id_tipo -> ID DOUBLE_POINT tipo_de_dato
+Rule 90    lista_enum_id_tipo -> ID DOUBLE_POINT tipo_de_dato lista_enum_id_tipo
+Rule 91    lista_enum_tipo -> tipo_de_dato
+Rule 92    lista_enum_tipo -> tipo_de_dato COMA lista_enum_tipo
+Rule 93    operadorLogico -> AND
+Rule 94    operadorLogico -> OR
+Rule 95    operadorLogico -> NOT
+Rule 96    operacionLogica -> valor repite_operacionLogica
+Rule 97    repite_operacionLogica -> operadorLogico valor
+Rule 98    repite_operacionLogica -> operadorLogico valor repite_operacionLogica
+Rule 99    condicion -> booleano
+Rule 100   condicion -> operacionComparacion
+Rule 101   condicion -> operacionLogica
+Rule 102   sentencias -> IF LPAREN condicion RPAREN
+Rule 103   sentencias -> IF condicion
+Rule 104   sentencias -> ELSE IF LPAREN condicion RPAREN
+Rule 105   sentencias -> ELSE IF condicion
+Rule 106   sentencias -> ELSE
+Rule 107   rango -> NUMBER PUNTO PUNTO NUMBER
+Rule 108   rango -> NUMBER PUNTO PUNTO EQUAL NUMBER
+Rule 109   rango -> ID PUNTO ITER LPAREN RPAREN
+Rule 110   rango -> <empty>
+Rule 111   bucle -> FOR ID IN rango
+Rule 112   sentencias -> WHILE condicion
+Rule 113   sentencias -> WHILE LPAREN condicion RPAREN
+Rule 114   print -> PRINTLN MACRO LPAREN valor RPAREN
+Rule 115   print -> PRINTLN LPAREN valor RPAREN
+Rule 116   library_call -> USE library_path
+Rule 117   library_path -> ID
+Rule 118   library_path -> ID TURBO_FISH library_path
 
 Terminals, with rules where they appear
 
-AND                  : 87
+AND                  : 93
 AS                   : 
 ASYN                 : 
 AWAY                 : 
 BOOL                 : 38
 BREAK                : 
 CHAR                 : 17 37
-COMA                 : 28 30 68 82 86
+COMA                 : 28 30 74 88 92
 CONST                : 25
 CONTINUE             : 
 DIVIDE               : 51
-DOUBLE_POINT         : 11 16 17 18 20 67 68 83 84
-ELSE                 : 
-ENUM                 : 77
-EQUAL                : 11 12 13 14 15 16 17 18 19 20 21 58 60 61 61
+DOUBLE_POINT         : 11 16 17 18 20 73 74 89 90
+ELSE                 : 104 105 106
+ENUM                 : 83
+EQUAL                : 11 12 13 14 15 16 17 18 19 20 21 61 63 64 64 108
 FALSE                : 10
 FLOAT                : 39
-FN                   : 64 65 66
-FOR                  : 
+FN                   : 70 71 72
+FOR                  : 111
 FROM                 : 
-GREAT                : 11 59 60
-ID                   : 11 12 13 14 15 16 17 18 19 21 65 66 67 68 69 70 77 81 82 83 84 96 97
-IF                   : 
+GREAT                : 11 62 63
+ID                   : 11 12 13 14 15 16 17 18 19 21 71 72 73 74 75 76 83 87 88 89 90 109 111 117 118
+IF                   : 102 103 104 105
+IN                   : 111
+ITER                 : 109
 LCORCH               : 11 12 14
-LESS                 : 11 57 58
+LESS                 : 11 60 61
 LET                  : 23 24
-LLLAV                : 77
-LPAREN               : 13 19 22 26 64 65 66 73 74 75 76 93 94
-MACRO                : 11 12 14 93
-MAIN                 : 64
+LLLAV                : 83
+LPAREN               : 13 19 22 26 70 71 72 79 80 81 82 102 104 109 113 114 115
+MACRO                : 11 12 14 114
+MAIN                 : 70
 MINUS                : 47 48
 MUT                  : 24
 NEW                  : 13 19
-NOT                  : 89
-NUMBER               : 16 40 70 74 76
-OR                   : 88
+NOT                  : 95
+NUMBER               : 16 40 76 80 82 107 107 108 108
+OR                   : 94
 PLUS                 : 45 46
-POP                  : 73 74
-PRINTLN              : 93 94
-PUNTO                : 69 70
+POP                  : 79 80
+PRINTLN              : 114 115
+PUNTO                : 75 76 107 107 108 108 109
 PUNTO_COMA           : 
-PUSH                 : 75 76
+PUSH                 : 81 82
 RCOM                 : 
 RCORCH               : 11 12 14
 RETURN               : 
-RLLAV                : 77
-RPAREN               : 13 19 22 26 64 65 66 73 74 75 76 93 94
+RLLAV                : 83
+RPAREN               : 13 19 22 26 70 71 72 79 80 81 82 102 104 109 113 114 115
 STATIC               : 
 STRING               : 18 36
 TIMES                : 49 50
@@ -175,56 +194,64 @@ TIPO_CHAR            : 17 33
 TIPO_INT             : 16 34
 TIPO_STRING          : 18 31
 TRUE                 : 9
-TURBO_FISH           : 13 19 97
-USE                  : 95
+TURBO_FISH           : 13 19 118
+USE                  : 116
 VEC                  : 11 12 13 14
 VEC_OBJ              : 11
-WHILE                : 
+WHILE                : 112 113
 error                : 
 
 Nonterminals, with rules where they appear
 
 asignacion           : 1
-booleano             : 
-comparaciones        : 3
+booleano             : 99
+bucle                : 
+comparaciones        : 3 66 67
+condicion            : 102 103 104 105 112 113
 cuerpo               : 0
 declaracion          : 11 12 13 14 15 16 17 18 19 20 21
 definir_funcion      : 4
 division             : 44
 enum                 : 6
-funcion              : 63
-funcion_main         : 62
-igual                : 56
+funcion              : 69
+funcion_main         : 68
+igual                : 59
 library_call         : 8
-library_path         : 95 97
-lista_enum           : 77
-lista_enum_id        : 78 82
-lista_enum_id_tipo   : 79 84
-lista_enum_tipo      : 80 86
-lista_parametros     : 66 68
+library_path         : 116 118
+lista_enum           : 83
+lista_enum_id        : 84 88
+lista_enum_id_tipo   : 85 90
+lista_enum_tipo      : 86 92
+lista_parametros     : 72 74
 llamada_a_metodo     : 5
-mayor                : 54
-mayor_igual          : 55
-menor                : 52
-menor_igual          : 53
-metodo               : 69
+mayor                : 57
+mayor_igual          : 58
+menor                : 55
+menor_igual          : 56
+metodo               : 75
 multiplicacion       : 43 50
-operacionLogica      : 
-operaciones          : 2
-operadorLogico       : 91 92
-pop_method           : 71
+operacionArit        : 
+operacionComparacion : 100
+operacionLogica      : 101
+operaciones          : 2 53 54
+operadorLogico       : 97 98
+pop_method           : 77
 print                : 7
-push_method          : 72
-repite_operacionLogica : 90 92
+push_method          : 78
+rango                : 111
+repite_operacionArit : 52 54
+repite_operacionComparacion : 65 67
+repite_operacionLogica : 96 98
 resta                : 42 48
+sentencias           : 
 suma                 : 41 46
-tipo_de_dato         : 11 19 27 28 67 68 83 84 85 86
+tipo_de_dato         : 11 19 27 28 73 74 89 90 91 92
 tupla_asignacion     : 20
 tupla_declaracion    : 20 21
 tupla_lista_de_datos : 22 28
 tupla_valores        : 11 12 26 30
-valor                : 15 29 30 90 91 92 93 94
-valor_numerico       : 35 45 45 46 47 47 48 49 49 50 51 51 57 57 58 58 59 59 60 60 61 61
+valor                : 15 29 30 52 53 54 65 66 67 96 97 98 114 115
+valor_numerico       : 35 45 45 46 47 47 48 49 49 50 51 51 60 60 61 61 62 62 63 63 64 64
 
 Parsing method: LALR
 
@@ -254,19 +281,19 @@ state 0
     (42) operaciones -> . resta
     (43) operaciones -> . multiplicacion
     (44) operaciones -> . division
-    (52) comparaciones -> . menor
-    (53) comparaciones -> . menor_igual
-    (54) comparaciones -> . mayor
-    (55) comparaciones -> . mayor_igual
-    (56) comparaciones -> . igual
-    (62) definir_funcion -> . funcion_main
-    (63) definir_funcion -> . funcion
-    (69) llamada_a_metodo -> . ID PUNTO metodo
-    (70) llamada_a_metodo -> . ID PUNTO NUMBER
-    (77) enum -> . ENUM ID LLLAV lista_enum RLLAV
-    (93) print -> . PRINTLN MACRO LPAREN valor RPAREN
-    (94) print -> . PRINTLN LPAREN valor RPAREN
-    (95) library_call -> . USE library_path
+    (55) comparaciones -> . menor
+    (56) comparaciones -> . menor_igual
+    (57) comparaciones -> . mayor
+    (58) comparaciones -> . mayor_igual
+    (59) comparaciones -> . igual
+    (68) definir_funcion -> . funcion_main
+    (69) definir_funcion -> . funcion
+    (75) llamada_a_metodo -> . ID PUNTO metodo
+    (76) llamada_a_metodo -> . ID PUNTO NUMBER
+    (83) enum -> . ENUM ID LLLAV lista_enum RLLAV
+    (114) print -> . PRINTLN MACRO LPAREN valor RPAREN
+    (115) print -> . PRINTLN LPAREN valor RPAREN
+    (116) library_call -> . USE library_path
     (23) declaracion -> . LET
     (24) declaracion -> . LET MUT
     (25) declaracion -> . CONST
@@ -277,14 +304,14 @@ state 0
     (49) multiplicacion -> . valor_numerico TIMES valor_numerico
     (50) multiplicacion -> . multiplicacion TIMES valor_numerico
     (51) division -> . valor_numerico DIVIDE valor_numerico
-    (57) menor -> . valor_numerico LESS valor_numerico
-    (58) menor_igual -> . valor_numerico LESS EQUAL valor_numerico
-    (59) mayor -> . valor_numerico GREAT valor_numerico
-    (60) mayor_igual -> . valor_numerico GREAT EQUAL valor_numerico
-    (61) igual -> . valor_numerico EQUAL EQUAL valor_numerico
-    (64) funcion_main -> . FN MAIN LPAREN RPAREN
-    (65) funcion -> . FN ID LPAREN RPAREN
-    (66) funcion -> . FN ID LPAREN lista_parametros RPAREN
+    (60) menor -> . valor_numerico LESS valor_numerico
+    (61) menor_igual -> . valor_numerico LESS EQUAL valor_numerico
+    (62) mayor -> . valor_numerico GREAT valor_numerico
+    (63) mayor_igual -> . valor_numerico GREAT EQUAL valor_numerico
+    (64) igual -> . valor_numerico EQUAL EQUAL valor_numerico
+    (70) funcion_main -> . FN MAIN LPAREN RPAREN
+    (71) funcion -> . FN ID LPAREN RPAREN
+    (72) funcion -> . FN ID LPAREN lista_parametros RPAREN
     (39) valor_numerico -> . FLOAT
     (40) valor_numerico -> . NUMBER
 
@@ -403,8 +430,8 @@ state 10
 
 state 11
 
-    (69) llamada_a_metodo -> ID . PUNTO metodo
-    (70) llamada_a_metodo -> ID . PUNTO NUMBER
+    (75) llamada_a_metodo -> ID . PUNTO metodo
+    (76) llamada_a_metodo -> ID . PUNTO NUMBER
 
     PUNTO           shift and go to state 34
 
@@ -462,64 +489,64 @@ state 16
 
 state 17
 
-    (52) comparaciones -> menor .
+    (55) comparaciones -> menor .
 
-    $end            reduce using rule 52 (comparaciones -> menor .)
+    $end            reduce using rule 55 (comparaciones -> menor .)
 
 
 state 18
 
-    (53) comparaciones -> menor_igual .
+    (56) comparaciones -> menor_igual .
 
-    $end            reduce using rule 53 (comparaciones -> menor_igual .)
+    $end            reduce using rule 56 (comparaciones -> menor_igual .)
 
 
 state 19
 
-    (54) comparaciones -> mayor .
+    (57) comparaciones -> mayor .
 
-    $end            reduce using rule 54 (comparaciones -> mayor .)
+    $end            reduce using rule 57 (comparaciones -> mayor .)
 
 
 state 20
 
-    (55) comparaciones -> mayor_igual .
+    (58) comparaciones -> mayor_igual .
 
-    $end            reduce using rule 55 (comparaciones -> mayor_igual .)
+    $end            reduce using rule 58 (comparaciones -> mayor_igual .)
 
 
 state 21
 
-    (56) comparaciones -> igual .
+    (59) comparaciones -> igual .
 
-    $end            reduce using rule 56 (comparaciones -> igual .)
+    $end            reduce using rule 59 (comparaciones -> igual .)
 
 
 state 22
 
-    (62) definir_funcion -> funcion_main .
+    (68) definir_funcion -> funcion_main .
 
-    $end            reduce using rule 62 (definir_funcion -> funcion_main .)
+    $end            reduce using rule 68 (definir_funcion -> funcion_main .)
 
 
 state 23
 
-    (63) definir_funcion -> funcion .
+    (69) definir_funcion -> funcion .
 
-    $end            reduce using rule 63 (definir_funcion -> funcion .)
+    $end            reduce using rule 69 (definir_funcion -> funcion .)
 
 
 state 24
 
-    (77) enum -> ENUM . ID LLLAV lista_enum RLLAV
+    (83) enum -> ENUM . ID LLLAV lista_enum RLLAV
 
     ID              shift and go to state 38
 
 
 state 25
 
-    (93) print -> PRINTLN . MACRO LPAREN valor RPAREN
-    (94) print -> PRINTLN . LPAREN valor RPAREN
+    (114) print -> PRINTLN . MACRO LPAREN valor RPAREN
+    (115) print -> PRINTLN . LPAREN valor RPAREN
 
     MACRO           shift and go to state 39
     LPAREN          shift and go to state 40
@@ -527,9 +554,9 @@ state 25
 
 state 26
 
-    (95) library_call -> USE . library_path
-    (96) library_path -> . ID
-    (97) library_path -> . ID TURBO_FISH library_path
+    (116) library_call -> USE . library_path
+    (117) library_path -> . ID
+    (118) library_path -> . ID TURBO_FISH library_path
 
     ID              shift and go to state 42
 
@@ -559,11 +586,11 @@ state 29
     (47) resta -> valor_numerico . MINUS valor_numerico
     (49) multiplicacion -> valor_numerico . TIMES valor_numerico
     (51) division -> valor_numerico . DIVIDE valor_numerico
-    (57) menor -> valor_numerico . LESS valor_numerico
-    (58) menor_igual -> valor_numerico . LESS EQUAL valor_numerico
-    (59) mayor -> valor_numerico . GREAT valor_numerico
-    (60) mayor_igual -> valor_numerico . GREAT EQUAL valor_numerico
-    (61) igual -> valor_numerico . EQUAL EQUAL valor_numerico
+    (60) menor -> valor_numerico . LESS valor_numerico
+    (61) menor_igual -> valor_numerico . LESS EQUAL valor_numerico
+    (62) mayor -> valor_numerico . GREAT valor_numerico
+    (63) mayor_igual -> valor_numerico . GREAT EQUAL valor_numerico
+    (64) igual -> valor_numerico . EQUAL EQUAL valor_numerico
 
     PLUS            shift and go to state 44
     MINUS           shift and go to state 45
@@ -576,9 +603,9 @@ state 29
 
 state 30
 
-    (64) funcion_main -> FN . MAIN LPAREN RPAREN
-    (65) funcion -> FN . ID LPAREN RPAREN
-    (66) funcion -> FN . ID LPAREN lista_parametros RPAREN
+    (70) funcion_main -> FN . MAIN LPAREN RPAREN
+    (71) funcion -> FN . ID LPAREN RPAREN
+    (72) funcion -> FN . ID LPAREN lista_parametros RPAREN
 
     MAIN            shift and go to state 51
     ID              shift and go to state 52
@@ -629,14 +656,14 @@ state 33
 
 state 34
 
-    (69) llamada_a_metodo -> ID PUNTO . metodo
-    (70) llamada_a_metodo -> ID PUNTO . NUMBER
-    (71) metodo -> . pop_method
-    (72) metodo -> . push_method
-    (73) pop_method -> . POP LPAREN RPAREN
-    (74) pop_method -> . POP LPAREN NUMBER RPAREN
-    (75) push_method -> . PUSH LPAREN RPAREN
-    (76) push_method -> . PUSH LPAREN NUMBER RPAREN
+    (75) llamada_a_metodo -> ID PUNTO . metodo
+    (76) llamada_a_metodo -> ID PUNTO . NUMBER
+    (77) metodo -> . pop_method
+    (78) metodo -> . push_method
+    (79) pop_method -> . POP LPAREN RPAREN
+    (80) pop_method -> . POP LPAREN NUMBER RPAREN
+    (81) push_method -> . PUSH LPAREN RPAREN
+    (82) push_method -> . PUSH LPAREN NUMBER RPAREN
 
     NUMBER          shift and go to state 58
     POP             shift and go to state 61
@@ -681,21 +708,21 @@ state 37
 
 state 38
 
-    (77) enum -> ENUM ID . LLLAV lista_enum RLLAV
+    (83) enum -> ENUM ID . LLLAV lista_enum RLLAV
 
     LLLAV           shift and go to state 66
 
 
 state 39
 
-    (93) print -> PRINTLN MACRO . LPAREN valor RPAREN
+    (114) print -> PRINTLN MACRO . LPAREN valor RPAREN
 
     LPAREN          shift and go to state 67
 
 
 state 40
 
-    (94) print -> PRINTLN LPAREN . valor RPAREN
+    (115) print -> PRINTLN LPAREN . valor RPAREN
     (35) valor -> . valor_numerico
     (36) valor -> . STRING
     (37) valor -> . CHAR
@@ -714,17 +741,17 @@ state 40
 
 state 41
 
-    (95) library_call -> USE library_path .
+    (116) library_call -> USE library_path .
 
-    $end            reduce using rule 95 (library_call -> USE library_path .)
+    $end            reduce using rule 116 (library_call -> USE library_path .)
 
 
 state 42
 
-    (96) library_path -> ID .
-    (97) library_path -> ID . TURBO_FISH library_path
+    (117) library_path -> ID .
+    (118) library_path -> ID . TURBO_FISH library_path
 
-    $end            reduce using rule 96 (library_path -> ID .)
+    $end            reduce using rule 117 (library_path -> ID .)
     TURBO_FISH      shift and go to state 73
 
 
@@ -782,8 +809,8 @@ state 47
 
 state 48
 
-    (57) menor -> valor_numerico LESS . valor_numerico
-    (58) menor_igual -> valor_numerico LESS . EQUAL valor_numerico
+    (60) menor -> valor_numerico LESS . valor_numerico
+    (61) menor_igual -> valor_numerico LESS . EQUAL valor_numerico
     (39) valor_numerico -> . FLOAT
     (40) valor_numerico -> . NUMBER
 
@@ -795,15 +822,15 @@ state 48
 
 state 49
 
-    (61) igual -> valor_numerico EQUAL . EQUAL valor_numerico
+    (64) igual -> valor_numerico EQUAL . EQUAL valor_numerico
 
     EQUAL           shift and go to state 80
 
 
 state 50
 
-    (59) mayor -> valor_numerico GREAT . valor_numerico
-    (60) mayor_igual -> valor_numerico GREAT . EQUAL valor_numerico
+    (62) mayor -> valor_numerico GREAT . valor_numerico
+    (63) mayor_igual -> valor_numerico GREAT . EQUAL valor_numerico
     (39) valor_numerico -> . FLOAT
     (40) valor_numerico -> . NUMBER
 
@@ -815,15 +842,15 @@ state 50
 
 state 51
 
-    (64) funcion_main -> FN MAIN . LPAREN RPAREN
+    (70) funcion_main -> FN MAIN . LPAREN RPAREN
 
     LPAREN          shift and go to state 83
 
 
 state 52
 
-    (65) funcion -> FN ID . LPAREN RPAREN
-    (66) funcion -> FN ID . LPAREN lista_parametros RPAREN
+    (71) funcion -> FN ID . LPAREN RPAREN
+    (72) funcion -> FN ID . LPAREN lista_parametros RPAREN
 
     LPAREN          shift and go to state 84
 
@@ -905,44 +932,44 @@ state 56
 
 state 57
 
-    (69) llamada_a_metodo -> ID PUNTO metodo .
+    (75) llamada_a_metodo -> ID PUNTO metodo .
 
-    $end            reduce using rule 69 (llamada_a_metodo -> ID PUNTO metodo .)
+    $end            reduce using rule 75 (llamada_a_metodo -> ID PUNTO metodo .)
 
 
 state 58
 
-    (70) llamada_a_metodo -> ID PUNTO NUMBER .
+    (76) llamada_a_metodo -> ID PUNTO NUMBER .
 
-    $end            reduce using rule 70 (llamada_a_metodo -> ID PUNTO NUMBER .)
+    $end            reduce using rule 76 (llamada_a_metodo -> ID PUNTO NUMBER .)
 
 
 state 59
 
-    (71) metodo -> pop_method .
+    (77) metodo -> pop_method .
 
-    $end            reduce using rule 71 (metodo -> pop_method .)
+    $end            reduce using rule 77 (metodo -> pop_method .)
 
 
 state 60
 
-    (72) metodo -> push_method .
+    (78) metodo -> push_method .
 
-    $end            reduce using rule 72 (metodo -> push_method .)
+    $end            reduce using rule 78 (metodo -> push_method .)
 
 
 state 61
 
-    (73) pop_method -> POP . LPAREN RPAREN
-    (74) pop_method -> POP . LPAREN NUMBER RPAREN
+    (79) pop_method -> POP . LPAREN RPAREN
+    (80) pop_method -> POP . LPAREN NUMBER RPAREN
 
     LPAREN          shift and go to state 101
 
 
 state 62
 
-    (75) push_method -> PUSH . LPAREN RPAREN
-    (76) push_method -> PUSH . LPAREN NUMBER RPAREN
+    (81) push_method -> PUSH . LPAREN RPAREN
+    (82) push_method -> PUSH . LPAREN NUMBER RPAREN
 
     LPAREN          shift and go to state 102
 
@@ -973,16 +1000,16 @@ state 65
 
 state 66
 
-    (77) enum -> ENUM ID LLLAV . lista_enum RLLAV
-    (78) lista_enum -> . lista_enum_id
-    (79) lista_enum -> . lista_enum_id_tipo
-    (80) lista_enum -> . lista_enum_tipo
-    (81) lista_enum_id -> . ID
-    (82) lista_enum_id -> . ID COMA lista_enum_id
-    (83) lista_enum_id_tipo -> . ID DOUBLE_POINT tipo_de_dato
-    (84) lista_enum_id_tipo -> . ID DOUBLE_POINT tipo_de_dato lista_enum_id_tipo
-    (85) lista_enum_tipo -> . tipo_de_dato
-    (86) lista_enum_tipo -> . tipo_de_dato COMA lista_enum_tipo
+    (83) enum -> ENUM ID LLLAV . lista_enum RLLAV
+    (84) lista_enum -> . lista_enum_id
+    (85) lista_enum -> . lista_enum_id_tipo
+    (86) lista_enum -> . lista_enum_tipo
+    (87) lista_enum_id -> . ID
+    (88) lista_enum_id -> . ID COMA lista_enum_id
+    (89) lista_enum_id_tipo -> . ID DOUBLE_POINT tipo_de_dato
+    (90) lista_enum_id_tipo -> . ID DOUBLE_POINT tipo_de_dato lista_enum_id_tipo
+    (91) lista_enum_tipo -> . tipo_de_dato
+    (92) lista_enum_tipo -> . tipo_de_dato COMA lista_enum_tipo
     (31) tipo_de_dato -> . TIPO_STRING
     (32) tipo_de_dato -> . TIPO_BOOL
     (33) tipo_de_dato -> . TIPO_CHAR
@@ -1002,7 +1029,7 @@ state 66
 
 state 67
 
-    (93) print -> PRINTLN MACRO LPAREN . valor RPAREN
+    (114) print -> PRINTLN MACRO LPAREN . valor RPAREN
     (35) valor -> . valor_numerico
     (36) valor -> . STRING
     (37) valor -> . CHAR
@@ -1021,7 +1048,7 @@ state 67
 
 state 68
 
-    (94) print -> PRINTLN LPAREN valor . RPAREN
+    (115) print -> PRINTLN LPAREN valor . RPAREN
 
     RPAREN          shift and go to state 110
 
@@ -1068,9 +1095,9 @@ state 72
 
 state 73
 
-    (97) library_path -> ID TURBO_FISH . library_path
-    (96) library_path -> . ID
-    (97) library_path -> . ID TURBO_FISH library_path
+    (118) library_path -> ID TURBO_FISH . library_path
+    (117) library_path -> . ID
+    (118) library_path -> . ID TURBO_FISH library_path
 
     ID              shift and go to state 42
 
@@ -1109,14 +1136,14 @@ state 77
 
 state 78
 
-    (57) menor -> valor_numerico LESS valor_numerico .
+    (60) menor -> valor_numerico LESS valor_numerico .
 
-    $end            reduce using rule 57 (menor -> valor_numerico LESS valor_numerico .)
+    $end            reduce using rule 60 (menor -> valor_numerico LESS valor_numerico .)
 
 
 state 79
 
-    (58) menor_igual -> valor_numerico LESS EQUAL . valor_numerico
+    (61) menor_igual -> valor_numerico LESS EQUAL . valor_numerico
     (39) valor_numerico -> . FLOAT
     (40) valor_numerico -> . NUMBER
 
@@ -1127,7 +1154,7 @@ state 79
 
 state 80
 
-    (61) igual -> valor_numerico EQUAL EQUAL . valor_numerico
+    (64) igual -> valor_numerico EQUAL EQUAL . valor_numerico
     (39) valor_numerico -> . FLOAT
     (40) valor_numerico -> . NUMBER
 
@@ -1138,14 +1165,14 @@ state 80
 
 state 81
 
-    (59) mayor -> valor_numerico GREAT valor_numerico .
+    (62) mayor -> valor_numerico GREAT valor_numerico .
 
-    $end            reduce using rule 59 (mayor -> valor_numerico GREAT valor_numerico .)
+    $end            reduce using rule 62 (mayor -> valor_numerico GREAT valor_numerico .)
 
 
 state 82
 
-    (60) mayor_igual -> valor_numerico GREAT EQUAL . valor_numerico
+    (63) mayor_igual -> valor_numerico GREAT EQUAL . valor_numerico
     (39) valor_numerico -> . FLOAT
     (40) valor_numerico -> . NUMBER
 
@@ -1156,17 +1183,17 @@ state 82
 
 state 83
 
-    (64) funcion_main -> FN MAIN LPAREN . RPAREN
+    (70) funcion_main -> FN MAIN LPAREN . RPAREN
 
     RPAREN          shift and go to state 115
 
 
 state 84
 
-    (65) funcion -> FN ID LPAREN . RPAREN
-    (66) funcion -> FN ID LPAREN . lista_parametros RPAREN
-    (67) lista_parametros -> . ID DOUBLE_POINT tipo_de_dato
-    (68) lista_parametros -> . ID DOUBLE_POINT tipo_de_dato COMA lista_parametros
+    (71) funcion -> FN ID LPAREN . RPAREN
+    (72) funcion -> FN ID LPAREN . lista_parametros RPAREN
+    (73) lista_parametros -> . ID DOUBLE_POINT tipo_de_dato
+    (74) lista_parametros -> . ID DOUBLE_POINT tipo_de_dato COMA lista_parametros
 
     RPAREN          shift and go to state 117
     ID              shift and go to state 116
@@ -1329,8 +1356,8 @@ state 100
 
 state 101
 
-    (73) pop_method -> POP LPAREN . RPAREN
-    (74) pop_method -> POP LPAREN . NUMBER RPAREN
+    (79) pop_method -> POP LPAREN . RPAREN
+    (80) pop_method -> POP LPAREN . NUMBER RPAREN
 
     RPAREN          shift and go to state 131
     NUMBER          shift and go to state 132
@@ -1338,8 +1365,8 @@ state 101
 
 state 102
 
-    (75) push_method -> PUSH LPAREN . RPAREN
-    (76) push_method -> PUSH LPAREN . NUMBER RPAREN
+    (81) push_method -> PUSH LPAREN . RPAREN
+    (82) push_method -> PUSH LPAREN . NUMBER RPAREN
 
     RPAREN          shift and go to state 133
     NUMBER          shift and go to state 134
@@ -1347,120 +1374,120 @@ state 102
 
 state 103
 
-    (81) lista_enum_id -> ID .
-    (82) lista_enum_id -> ID . COMA lista_enum_id
-    (83) lista_enum_id_tipo -> ID . DOUBLE_POINT tipo_de_dato
-    (84) lista_enum_id_tipo -> ID . DOUBLE_POINT tipo_de_dato lista_enum_id_tipo
+    (87) lista_enum_id -> ID .
+    (88) lista_enum_id -> ID . COMA lista_enum_id
+    (89) lista_enum_id_tipo -> ID . DOUBLE_POINT tipo_de_dato
+    (90) lista_enum_id_tipo -> ID . DOUBLE_POINT tipo_de_dato lista_enum_id_tipo
 
-    RLLAV           reduce using rule 81 (lista_enum_id -> ID .)
+    RLLAV           reduce using rule 87 (lista_enum_id -> ID .)
     COMA            shift and go to state 135
     DOUBLE_POINT    shift and go to state 136
 
 
 state 104
 
-    (77) enum -> ENUM ID LLLAV lista_enum . RLLAV
+    (83) enum -> ENUM ID LLLAV lista_enum . RLLAV
 
     RLLAV           shift and go to state 137
 
 
 state 105
 
-    (78) lista_enum -> lista_enum_id .
+    (84) lista_enum -> lista_enum_id .
 
-    RLLAV           reduce using rule 78 (lista_enum -> lista_enum_id .)
+    RLLAV           reduce using rule 84 (lista_enum -> lista_enum_id .)
 
 
 state 106
 
-    (79) lista_enum -> lista_enum_id_tipo .
+    (85) lista_enum -> lista_enum_id_tipo .
 
-    RLLAV           reduce using rule 79 (lista_enum -> lista_enum_id_tipo .)
+    RLLAV           reduce using rule 85 (lista_enum -> lista_enum_id_tipo .)
 
 
 state 107
 
-    (80) lista_enum -> lista_enum_tipo .
+    (86) lista_enum -> lista_enum_tipo .
 
-    RLLAV           reduce using rule 80 (lista_enum -> lista_enum_tipo .)
+    RLLAV           reduce using rule 86 (lista_enum -> lista_enum_tipo .)
 
 
 state 108
 
-    (85) lista_enum_tipo -> tipo_de_dato .
-    (86) lista_enum_tipo -> tipo_de_dato . COMA lista_enum_tipo
+    (91) lista_enum_tipo -> tipo_de_dato .
+    (92) lista_enum_tipo -> tipo_de_dato . COMA lista_enum_tipo
 
-    RLLAV           reduce using rule 85 (lista_enum_tipo -> tipo_de_dato .)
+    RLLAV           reduce using rule 91 (lista_enum_tipo -> tipo_de_dato .)
     COMA            shift and go to state 138
 
 
 state 109
 
-    (93) print -> PRINTLN MACRO LPAREN valor . RPAREN
+    (114) print -> PRINTLN MACRO LPAREN valor . RPAREN
 
     RPAREN          shift and go to state 139
 
 
 state 110
 
-    (94) print -> PRINTLN LPAREN valor RPAREN .
+    (115) print -> PRINTLN LPAREN valor RPAREN .
 
-    $end            reduce using rule 94 (print -> PRINTLN LPAREN valor RPAREN .)
+    $end            reduce using rule 115 (print -> PRINTLN LPAREN valor RPAREN .)
 
 
 state 111
 
-    (97) library_path -> ID TURBO_FISH library_path .
+    (118) library_path -> ID TURBO_FISH library_path .
 
-    $end            reduce using rule 97 (library_path -> ID TURBO_FISH library_path .)
+    $end            reduce using rule 118 (library_path -> ID TURBO_FISH library_path .)
 
 
 state 112
 
-    (58) menor_igual -> valor_numerico LESS EQUAL valor_numerico .
+    (61) menor_igual -> valor_numerico LESS EQUAL valor_numerico .
 
-    $end            reduce using rule 58 (menor_igual -> valor_numerico LESS EQUAL valor_numerico .)
+    $end            reduce using rule 61 (menor_igual -> valor_numerico LESS EQUAL valor_numerico .)
 
 
 state 113
 
-    (61) igual -> valor_numerico EQUAL EQUAL valor_numerico .
+    (64) igual -> valor_numerico EQUAL EQUAL valor_numerico .
 
-    $end            reduce using rule 61 (igual -> valor_numerico EQUAL EQUAL valor_numerico .)
+    $end            reduce using rule 64 (igual -> valor_numerico EQUAL EQUAL valor_numerico .)
 
 
 state 114
 
-    (60) mayor_igual -> valor_numerico GREAT EQUAL valor_numerico .
+    (63) mayor_igual -> valor_numerico GREAT EQUAL valor_numerico .
 
-    $end            reduce using rule 60 (mayor_igual -> valor_numerico GREAT EQUAL valor_numerico .)
+    $end            reduce using rule 63 (mayor_igual -> valor_numerico GREAT EQUAL valor_numerico .)
 
 
 state 115
 
-    (64) funcion_main -> FN MAIN LPAREN RPAREN .
+    (70) funcion_main -> FN MAIN LPAREN RPAREN .
 
-    $end            reduce using rule 64 (funcion_main -> FN MAIN LPAREN RPAREN .)
+    $end            reduce using rule 70 (funcion_main -> FN MAIN LPAREN RPAREN .)
 
 
 state 116
 
-    (67) lista_parametros -> ID . DOUBLE_POINT tipo_de_dato
-    (68) lista_parametros -> ID . DOUBLE_POINT tipo_de_dato COMA lista_parametros
+    (73) lista_parametros -> ID . DOUBLE_POINT tipo_de_dato
+    (74) lista_parametros -> ID . DOUBLE_POINT tipo_de_dato COMA lista_parametros
 
     DOUBLE_POINT    shift and go to state 140
 
 
 state 117
 
-    (65) funcion -> FN ID LPAREN RPAREN .
+    (71) funcion -> FN ID LPAREN RPAREN .
 
-    $end            reduce using rule 65 (funcion -> FN ID LPAREN RPAREN .)
+    $end            reduce using rule 71 (funcion -> FN ID LPAREN RPAREN .)
 
 
 state 118
 
-    (66) funcion -> FN ID LPAREN lista_parametros . RPAREN
+    (72) funcion -> FN ID LPAREN lista_parametros . RPAREN
 
     RPAREN          shift and go to state 141
 
@@ -1574,37 +1601,37 @@ state 130
 
 state 131
 
-    (73) pop_method -> POP LPAREN RPAREN .
+    (79) pop_method -> POP LPAREN RPAREN .
 
-    $end            reduce using rule 73 (pop_method -> POP LPAREN RPAREN .)
+    $end            reduce using rule 79 (pop_method -> POP LPAREN RPAREN .)
 
 
 state 132
 
-    (74) pop_method -> POP LPAREN NUMBER . RPAREN
+    (80) pop_method -> POP LPAREN NUMBER . RPAREN
 
     RPAREN          shift and go to state 152
 
 
 state 133
 
-    (75) push_method -> PUSH LPAREN RPAREN .
+    (81) push_method -> PUSH LPAREN RPAREN .
 
-    $end            reduce using rule 75 (push_method -> PUSH LPAREN RPAREN .)
+    $end            reduce using rule 81 (push_method -> PUSH LPAREN RPAREN .)
 
 
 state 134
 
-    (76) push_method -> PUSH LPAREN NUMBER . RPAREN
+    (82) push_method -> PUSH LPAREN NUMBER . RPAREN
 
     RPAREN          shift and go to state 153
 
 
 state 135
 
-    (82) lista_enum_id -> ID COMA . lista_enum_id
-    (81) lista_enum_id -> . ID
-    (82) lista_enum_id -> . ID COMA lista_enum_id
+    (88) lista_enum_id -> ID COMA . lista_enum_id
+    (87) lista_enum_id -> . ID
+    (88) lista_enum_id -> . ID COMA lista_enum_id
 
     ID              shift and go to state 154
 
@@ -1612,8 +1639,8 @@ state 135
 
 state 136
 
-    (83) lista_enum_id_tipo -> ID DOUBLE_POINT . tipo_de_dato
-    (84) lista_enum_id_tipo -> ID DOUBLE_POINT . tipo_de_dato lista_enum_id_tipo
+    (89) lista_enum_id_tipo -> ID DOUBLE_POINT . tipo_de_dato
+    (90) lista_enum_id_tipo -> ID DOUBLE_POINT . tipo_de_dato lista_enum_id_tipo
     (31) tipo_de_dato -> . TIPO_STRING
     (32) tipo_de_dato -> . TIPO_BOOL
     (33) tipo_de_dato -> . TIPO_CHAR
@@ -1628,16 +1655,16 @@ state 136
 
 state 137
 
-    (77) enum -> ENUM ID LLLAV lista_enum RLLAV .
+    (83) enum -> ENUM ID LLLAV lista_enum RLLAV .
 
-    $end            reduce using rule 77 (enum -> ENUM ID LLLAV lista_enum RLLAV .)
+    $end            reduce using rule 83 (enum -> ENUM ID LLLAV lista_enum RLLAV .)
 
 
 state 138
 
-    (86) lista_enum_tipo -> tipo_de_dato COMA . lista_enum_tipo
-    (85) lista_enum_tipo -> . tipo_de_dato
-    (86) lista_enum_tipo -> . tipo_de_dato COMA lista_enum_tipo
+    (92) lista_enum_tipo -> tipo_de_dato COMA . lista_enum_tipo
+    (91) lista_enum_tipo -> . tipo_de_dato
+    (92) lista_enum_tipo -> . tipo_de_dato COMA lista_enum_tipo
     (31) tipo_de_dato -> . TIPO_STRING
     (32) tipo_de_dato -> . TIPO_BOOL
     (33) tipo_de_dato -> . TIPO_CHAR
@@ -1653,15 +1680,15 @@ state 138
 
 state 139
 
-    (93) print -> PRINTLN MACRO LPAREN valor RPAREN .
+    (114) print -> PRINTLN MACRO LPAREN valor RPAREN .
 
-    $end            reduce using rule 93 (print -> PRINTLN MACRO LPAREN valor RPAREN .)
+    $end            reduce using rule 114 (print -> PRINTLN MACRO LPAREN valor RPAREN .)
 
 
 state 140
 
-    (67) lista_parametros -> ID DOUBLE_POINT . tipo_de_dato
-    (68) lista_parametros -> ID DOUBLE_POINT . tipo_de_dato COMA lista_parametros
+    (73) lista_parametros -> ID DOUBLE_POINT . tipo_de_dato
+    (74) lista_parametros -> ID DOUBLE_POINT . tipo_de_dato COMA lista_parametros
     (31) tipo_de_dato -> . TIPO_STRING
     (32) tipo_de_dato -> . TIPO_BOOL
     (33) tipo_de_dato -> . TIPO_CHAR
@@ -1676,9 +1703,9 @@ state 140
 
 state 141
 
-    (66) funcion -> FN ID LPAREN lista_parametros RPAREN .
+    (72) funcion -> FN ID LPAREN lista_parametros RPAREN .
 
-    $end            reduce using rule 66 (funcion -> FN ID LPAREN lista_parametros RPAREN .)
+    $end            reduce using rule 72 (funcion -> FN ID LPAREN lista_parametros RPAREN .)
 
 
 state 142
@@ -1785,59 +1812,59 @@ state 151
 
 state 152
 
-    (74) pop_method -> POP LPAREN NUMBER RPAREN .
+    (80) pop_method -> POP LPAREN NUMBER RPAREN .
 
-    $end            reduce using rule 74 (pop_method -> POP LPAREN NUMBER RPAREN .)
+    $end            reduce using rule 80 (pop_method -> POP LPAREN NUMBER RPAREN .)
 
 
 state 153
 
-    (76) push_method -> PUSH LPAREN NUMBER RPAREN .
+    (82) push_method -> PUSH LPAREN NUMBER RPAREN .
 
-    $end            reduce using rule 76 (push_method -> PUSH LPAREN NUMBER RPAREN .)
+    $end            reduce using rule 82 (push_method -> PUSH LPAREN NUMBER RPAREN .)
 
 
 state 154
 
-    (81) lista_enum_id -> ID .
-    (82) lista_enum_id -> ID . COMA lista_enum_id
+    (87) lista_enum_id -> ID .
+    (88) lista_enum_id -> ID . COMA lista_enum_id
 
-    RLLAV           reduce using rule 81 (lista_enum_id -> ID .)
+    RLLAV           reduce using rule 87 (lista_enum_id -> ID .)
     COMA            shift and go to state 135
 
 
 state 155
 
-    (82) lista_enum_id -> ID COMA lista_enum_id .
+    (88) lista_enum_id -> ID COMA lista_enum_id .
 
-    RLLAV           reduce using rule 82 (lista_enum_id -> ID COMA lista_enum_id .)
+    RLLAV           reduce using rule 88 (lista_enum_id -> ID COMA lista_enum_id .)
 
 
 state 156
 
-    (83) lista_enum_id_tipo -> ID DOUBLE_POINT tipo_de_dato .
-    (84) lista_enum_id_tipo -> ID DOUBLE_POINT tipo_de_dato . lista_enum_id_tipo
-    (83) lista_enum_id_tipo -> . ID DOUBLE_POINT tipo_de_dato
-    (84) lista_enum_id_tipo -> . ID DOUBLE_POINT tipo_de_dato lista_enum_id_tipo
+    (89) lista_enum_id_tipo -> ID DOUBLE_POINT tipo_de_dato .
+    (90) lista_enum_id_tipo -> ID DOUBLE_POINT tipo_de_dato . lista_enum_id_tipo
+    (89) lista_enum_id_tipo -> . ID DOUBLE_POINT tipo_de_dato
+    (90) lista_enum_id_tipo -> . ID DOUBLE_POINT tipo_de_dato lista_enum_id_tipo
 
-    RLLAV           reduce using rule 83 (lista_enum_id_tipo -> ID DOUBLE_POINT tipo_de_dato .)
+    RLLAV           reduce using rule 89 (lista_enum_id_tipo -> ID DOUBLE_POINT tipo_de_dato .)
     ID              shift and go to state 165
 
     lista_enum_id_tipo             shift and go to state 166
 
 state 157
 
-    (86) lista_enum_tipo -> tipo_de_dato COMA lista_enum_tipo .
+    (92) lista_enum_tipo -> tipo_de_dato COMA lista_enum_tipo .
 
-    RLLAV           reduce using rule 86 (lista_enum_tipo -> tipo_de_dato COMA lista_enum_tipo .)
+    RLLAV           reduce using rule 92 (lista_enum_tipo -> tipo_de_dato COMA lista_enum_tipo .)
 
 
 state 158
 
-    (67) lista_parametros -> ID DOUBLE_POINT tipo_de_dato .
-    (68) lista_parametros -> ID DOUBLE_POINT tipo_de_dato . COMA lista_parametros
+    (73) lista_parametros -> ID DOUBLE_POINT tipo_de_dato .
+    (74) lista_parametros -> ID DOUBLE_POINT tipo_de_dato . COMA lista_parametros
 
-    RPAREN          reduce using rule 67 (lista_parametros -> ID DOUBLE_POINT tipo_de_dato .)
+    RPAREN          reduce using rule 73 (lista_parametros -> ID DOUBLE_POINT tipo_de_dato .)
     COMA            shift and go to state 167
 
 
@@ -1886,24 +1913,24 @@ state 164
 
 state 165
 
-    (83) lista_enum_id_tipo -> ID . DOUBLE_POINT tipo_de_dato
-    (84) lista_enum_id_tipo -> ID . DOUBLE_POINT tipo_de_dato lista_enum_id_tipo
+    (89) lista_enum_id_tipo -> ID . DOUBLE_POINT tipo_de_dato
+    (90) lista_enum_id_tipo -> ID . DOUBLE_POINT tipo_de_dato lista_enum_id_tipo
 
     DOUBLE_POINT    shift and go to state 136
 
 
 state 166
 
-    (84) lista_enum_id_tipo -> ID DOUBLE_POINT tipo_de_dato lista_enum_id_tipo .
+    (90) lista_enum_id_tipo -> ID DOUBLE_POINT tipo_de_dato lista_enum_id_tipo .
 
-    RLLAV           reduce using rule 84 (lista_enum_id_tipo -> ID DOUBLE_POINT tipo_de_dato lista_enum_id_tipo .)
+    RLLAV           reduce using rule 90 (lista_enum_id_tipo -> ID DOUBLE_POINT tipo_de_dato lista_enum_id_tipo .)
 
 
 state 167
 
-    (68) lista_parametros -> ID DOUBLE_POINT tipo_de_dato COMA . lista_parametros
-    (67) lista_parametros -> . ID DOUBLE_POINT tipo_de_dato
-    (68) lista_parametros -> . ID DOUBLE_POINT tipo_de_dato COMA lista_parametros
+    (74) lista_parametros -> ID DOUBLE_POINT tipo_de_dato COMA . lista_parametros
+    (73) lista_parametros -> . ID DOUBLE_POINT tipo_de_dato
+    (74) lista_parametros -> . ID DOUBLE_POINT tipo_de_dato COMA lista_parametros
 
     ID              shift and go to state 116
 
@@ -1939,9 +1966,9 @@ state 171
 
 state 172
 
-    (68) lista_parametros -> ID DOUBLE_POINT tipo_de_dato COMA lista_parametros .
+    (74) lista_parametros -> ID DOUBLE_POINT tipo_de_dato COMA lista_parametros .
 
-    RPAREN          reduce using rule 68 (lista_parametros -> ID DOUBLE_POINT tipo_de_dato COMA lista_parametros .)
+    RPAREN          reduce using rule 74 (lista_parametros -> ID DOUBLE_POINT tipo_de_dato COMA lista_parametros .)
 
 
 state 173

@@ -1,5 +1,17 @@
 import ply.yacc as yacc
 from lexico import tokens
+import logging
+
+
+logging.basicConfig(
+    level = logging.DEBUG,
+    filename = "parselog.txt",
+    filemode = "w",
+    format = "%(filename)10s:%(lineno)4d:%(message)s"
+)
+log = logging.getLogger()
+
+
 
 def p_cuerpo(p):
   """cuerpo : asignacion
@@ -94,13 +106,13 @@ def p_division(p):
   """division : valor_numerico DIVIDE valor_numerico"""
 
 ##admiten mas de una operacion
-def p_operacionLogica(p):
-    'operacionLogica : valor repite_operacionLogica'
+def p_operacionArit(p):
+    'operacionArit : valor repite_operacionArit'
 
 
-def p_repite_operacionLogica(p):
-    '''repite_operacionLogica : operaciones valor
-                              | operaciones valor repite_operacionLogica
+def p_repite_operacionArit(p):
+    '''repite_operacionArit : operaciones valor
+                              | operaciones valor repite_operacionArit
     '''
 
 
@@ -217,14 +229,10 @@ def p_condicion(p):
                  | operacionComparacion
                  | operacionLogica
     '''
-def p_sentencias_condicional(p):
-    '''sentencias : IF LLLAV condicion RLLAV
-                  | IF LLLAV condicion RLLAV THEN
-                  | IF condicion THEN
+def p_bucle_condicional(p):
+    '''sentencias : IF LPAREN condicion RPAREN
                   | IF condicion
-                  | ELSE IF LLLAV condicion RLLAV
-                  | ELSE IF LLLAV condicion RLLAV THEN
-                  | ELSE IF condicion THEN
+                  | ELSE IF LPAREN condicion RPAREN 
                   | ELSE IF condicion
                   | ELSE
     '''
@@ -233,8 +241,8 @@ def p_sentencias_condicional(p):
 # Bucle for
 
 def p_rangoSentencia(p):
-  """rango: NUMBER PUNTO PUNTO NUMBER
-          | NUMBER PUNTO PUNTO IGUAL '=' NUMBER
+  """rango : NUMBER PUNTO PUNTO NUMBER
+          | NUMBER PUNTO PUNTO EQUAL NUMBER
           | ID PUNTO ITER LPAREN RPAREN
           | """
 
@@ -247,7 +255,6 @@ def p_bucle_for(p):
 
 def p_bucle_while(p):
     '''sentencias : WHILE condicion
-               | WHILE LPAREN condicion RPAREN 
                | WHILE LPAREN condicion RPAREN
     '''
 
@@ -273,7 +280,7 @@ def p_error(p):
     print("Error de sintaxis Fin de Linea")
 
 #BUILD THE PARSER 
-parser = yacc.yacc()
+parser = yacc.yacc(debug=True,debuglog=log)
 
 def validaRegla(s):
   result = parser.parse(s)
