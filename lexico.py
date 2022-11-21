@@ -33,7 +33,9 @@ reserved = {
   'false' : 'FALSE',
   'push' : 'PUSH',
   'pop' : 'POP',
-  'enum' : 'ENUM'
+  'enum' : 'ENUM',
+  'in' : 'IN',
+  'iter' : 'ITER'
 }
 #Agregue todos los tokens solicitados
 tokens = [
@@ -65,9 +67,9 @@ t_TURBO_FISH=r'\:\:'
 t_LCORCH=r'\['
 t_RCORCH=r'\]'
 t_DOUBLE_POINT=r'\:'
-t_AND=r'&&'
-t_NOT=r'!'
-t_OR=r'||' 
+t_AND=r'\&'
+t_NOT=r'\!'
+t_OR=r'\|' 
 
 
 def t_TIPO_INT(t):

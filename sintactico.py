@@ -52,6 +52,23 @@ def p_tupla_valores(p):
   """tupla_valores : valor
                     | valor COMA tupla_valores """
 
+##BNF PARA MANEJO DE DATOS - HANS RAMOS 
+def p_tipo_de_dato(p):
+  """tipo_de_dato : TIPO_STRING
+                  | TIPO_BOOL
+                  | TIPO_CHAR
+                  | TIPO_INT"""
+
+def p_valor(p):
+  """valor  : valor_numerico
+            | STRING
+            | CHAR
+            | BOOL"""
+
+def p_valor_numerico(p):
+  """valor_numerico : FLOAT
+                    | NUMBER"""
+
 ##OPERACIONES - HANS RAMOS
 
 def p_operaciones(p):
@@ -76,6 +93,16 @@ def p_multiplicacion(p):
 def p_division(p):
   """division : valor_numerico DIVIDE valor_numerico"""
 
+##admiten mas de una operacion
+def p_operacionLogica(p):
+    'operacionLogica : valor repite_operacionLogica'
+
+
+def p_repite_operacionLogica(p):
+    '''repite_operacionLogica : operaciones valor
+                              | operaciones valor repite_operacionLogica
+    '''
+
 
 ##COMPARACIONES -HANS RAMOS
 def p_comparaciones(p):
@@ -97,6 +124,17 @@ def p_mayor_igual(p):
 
 def p_igual(p):
   """igual : valor_numerico EQUAL EQUAL valor_numerico"""
+
+##admiten mas de una operacion
+
+def p_operacionComparacion(p):
+    'operacionComparacion : valor repite_operacionComparacion'
+
+
+def p_repite_operacionComparacion(p):
+    '''repite_operacionComparacion : comparaciones valor
+                                   | comparaciones valor repite_operacionComparacion
+    '''
 
 ##FUNCIONES - HANS RAMOS
 def p_definir_funcion(p):
@@ -154,45 +192,65 @@ def p_lista_enum_tipo(p):
                      | tipo_de_dato COMA lista_enum_tipo"""
 
 
-  #Operaciones logicas -- Michelle Mujica
+# Operaciones logicas -- Michelle Mujica
 def p_operadorLogico(p):
-    """operacionLogica : AND
-                        |OR
-                        |NOT"""
+    """operadorLogico : AND
+                      | OR
+                      | NOT"""
 
 def p_operacionLogica(p):
     'operacionLogica : valor repite_operacionLogica'
 
 
 def p_repite_operacionLogica(p):
-    '''repite_operacionLogica : operadorLogico valor
-                              | operadorLogico valor repite_operacionLogica
+    """repite_operacionLogica : operadorLogico valor
+                              | operadorLogico valor repite_operacionLogica"""
+
+
+
+#Estructuras de Control -- Michelle Mujica
+
+#Bucle if
+
+def p_condicion(p):
+    '''condicion : booleano
+                 | operacionComparacion
+                 | operacionLogica
     '''
-                      
-def p_AND(p):
-  """and : LPAREN condicion1 RPAREN AND LPAREN condicion2 RPAREN"""
+def p_sentencias_condicional(p):
+    '''sentencias : IF LLLAV condicion RLLAV
+                  | IF LLLAV condicion RLLAV THEN
+                  | IF condicion THEN
+                  | IF condicion
+                  | ELSE IF LLLAV condicion RLLAV
+                  | ELSE IF LLLAV condicion RLLAV THEN
+                  | ELSE IF condicion THEN
+                  | ELSE IF condicion
+                  | ELSE
+    '''
 
-def p_OR(p):
-  'OR : LPAREN condicion1 RPAREN OR LPAREN condicion2 RPAREN'
 
-def p_OR(p):
-  'NOT : condicion1 NOT condicion2'
-##BNF PARA MANEJO DE DATOS - HANS RAMOS 
-def p_tipo_de_dato(p):
-  """tipo_de_dato : TIPO_STRING
-                  | TIPO_BOOL
-                  | TIPO_CHAR
-                  | TIPO_INT"""
+# Bucle for
 
-def p_valor(p):
-  """valor  : valor_numerico
-            | STRING
-            | CHAR
-            | BOOL"""
+def p_rangoSentencia(p):
+  """rango: NUMBER PUNTO PUNTO NUMBER
+          | NUMBER PUNTO PUNTO IGUAL '=' NUMBER
+          | ID PUNTO ITER LPAREN RPAREN
+          | """
 
-def p_valor_numerico(p):
-  """valor_numerico : FLOAT
-                    | NUMBER"""
+def p_bucle_for(p):
+    'bucle : FOR ID IN rango'
+
+
+
+#Bucle while
+
+def p_bucle_while(p):
+    '''sentencias : WHILE condicion
+               | WHILE LPAREN condicion RPAREN 
+               | WHILE LPAREN condicion RPAREN
+    '''
+
 
 ##EXTRAS
 def p_print(p):
