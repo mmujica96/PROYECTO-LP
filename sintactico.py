@@ -113,7 +113,7 @@ def p_multiplicacion(p):
 def p_division(p):
   """division : valor_numerico DIVIDE valor_numerico"""
 
-##admiten mas de una operacion
+##admiten mas de una operacion - MICHELLE MUJICA
 def p_operacionArit(p):
     'operacionArit : valor repite_operacionArit'
 
@@ -145,7 +145,7 @@ def p_mayor_igual(p):
 def p_igual(p):
   """igual : valor_numerico EQUAL EQUAL valor_numerico"""
 
-##admiten mas de una operacion
+##admiten mas de una operacion - MICHELLE MUJICA
 
 def p_operacionComparacion(p):
     'operacionComparacion : valor repite_operacionComparacion'
