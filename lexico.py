@@ -68,7 +68,7 @@ t_RLLAV = r'\}'
 t_MACRONOT=r'!'
 t_LESS=r'\<'
 t_GREAT=r'\>'
-t_STRING=r'"[a-zA-Z]*"'
+t_STRING=r'"[\S ]*"'
 t_EQUAL=r'='
 t_PUNTO_COMA= r';'
 t_COMA=r','
@@ -126,7 +126,7 @@ lexer = lex.lex(debug=True,debuglog=log)
 toks=[]
 def analyze(data):
     lexer.input(data)
-
+    
     while True:
         tok = lexer.token()
         if not tok:

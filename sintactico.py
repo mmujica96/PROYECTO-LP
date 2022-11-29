@@ -287,7 +287,7 @@ def p_error(p):
   else:
     resultado = "Error sintactico: {}".format(p)
     print(resultado)
-    resultado_sintactico.append(resultado)
+    
 
 entradaGUI = []
 
