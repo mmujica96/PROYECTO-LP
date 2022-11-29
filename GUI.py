@@ -2,21 +2,30 @@ from tkinter import *
 from tkinter import scrolledtext as st
 import tkinter.font as tkFont
 from lexico import leerAlgoritmoLexico
+from sintactico import leerAlgoritmoSintactico
 
 def lexicoButton():
     result = leerAlgoritmoLexico(entrada1.get(1.0, "end-1c"))
-    lines_result = ""
+    lineasresultantes = ""
     for line in result:
-        lines_result = lines_result + line + "\n"
+        lineasresultantes = lineasresultantes + line + "\n"
     text_code_lex = st.ScrolledText(root, width=65, height=20)
-    text_code_lex.insert("1.0", lines_result)
+    text_code_lex.insert("1.0", lineasresultantes)
     text_code_lex.grid(column=0, row=6, padx=10, pady=10, columnspan=2)
     text_code_lex.configure(state="disabled")
     #print(entrada1.get(1.0, "end-1c")) 
 
 
 def sintacticoButton():
-    print("SINTACTICO")
+    result = leerAlgoritmoSintactico(entrada1.get(1.0, "end-1c"))
+    lineasresultantes = ""
+    for line in result:
+        if line != None:
+            lineasresultantes = lineasresultantes + line + "\n"
+    text_code_sin = st.ScrolledText(root, width=65, height=20)
+    text_code_sin.insert("1.0", lineasresultantes)
+    text_code_sin.grid(column=0, row=6, padx=10, pady=10, columnspan=2)
+    text_code_sin.configure(state="disabled")
 
 
 def semanticoButton():
