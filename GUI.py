@@ -1,43 +1,54 @@
 from tkinter import *
-##Clase ventana
-class Window(Frame):
-    def __init__(self, master=None):
-        Frame.__init__(self, master)
-        self.master = master
+from tkinter import scrolledtext as st
+import tkinter.font as tkFont
 
-        self.pack(fill=BOTH, expand=1)
-
-        ###Agregar propiedad font a los labels para cambiar su tamanio y fuente
-        #Analizador lexico
-        lexicoButton = Button(self, text="Léxico", command=self.lexicoButton)
-        lexicoButton.place(x=0, y=20)
-        #Analizador sintáctico
-        sintacticoButton = Button(self, text="Sintático", command=self.sintacticoButton)
-        sintacticoButton.place(x=60, y=20)
-        #Analizador Semántico
-        semanticoButton = Button(self, text="Semántico", command=self.semanticoButton)
-        semanticoButton.place(x=130, y=20)
-
-        text = Label(self, text="Botones juas")
-        text.place(x=0,y=0)
-
-    ##metodos que usa la clase Window
-
-    def lexicoButton(self):
-        print("LEXICO")
-    def sintacticoButton(self):
-        print("SINTACTICO")
-    def semanticoButton(self):
-        print("SEMANTICO")
+def lexicoButton():
+    print("LEXICO " + algoritmo.get()) 
+def sintacticoButton():
+    print("SINTACTICO")
+def semanticoButton():
+    print("SEMANTICO")
             
 
 ##Start tk and create a window
-root = Tk()
-app = Window(root)
-
+root =Tk()
 # Configuraciones de la ventana
-root.wm_title("Analizador de código")
-root.geometry("640x400")
+root.title("Analizador de código")
+root.geometry("400x300")
+root.resizable(width=True, height=True)
+
+
+
+#Variables
+algoritmo = StringVar()
+algoritmo.set("Algoritmo a evaluar")
+
+###Agregar propiedad font a los labels para cambiar su tamanio y fuente
+
+# Titulo
+titulo = tkFont.Font(family="Lucia Grande", size=20)
+labeltitulop = Label(root, text="Interprete de Rust", fg="Blue", font=titulo).grid(column=0, row=0, pady=10, padx=50, columnspan=2)
+
+# Etiqueta de ingreso
+etiqueta1= tkFont.Font(family="Lucida Grande", size=10)
+etiqueta1= Label(root,text="Escribe el algoritmo: ", font=etiqueta1 )
+etiqueta1.place(x=20, y=80)
+
+#Cuadro de texto
+entrada1 = Entry(root, textvariable=algoritmo)
+entrada1.place(x=20, y=100, width=300,
+        height=100)
+
+
+#Analizador lexico
+lexicoButton = Button(root, text="Léxico", command=lexicoButton)
+lexicoButton.place(x=330, y=100)
+#Analizador sintáctico
+sintacticoButton = Button(root, text="Sintático", command=sintacticoButton)
+sintacticoButton.place(x=330, y=140)
+#Analizador Semántico
+semanticoButton = Button(root, text="Semántico", command=semanticoButton)
+semanticoButton.place(x=330, y=180)
 
 # show window
 root.mainloop()
