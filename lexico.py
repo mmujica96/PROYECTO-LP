@@ -121,32 +121,23 @@ def t_error(t):
 
 #Construya el lexer
 lexer = lex.lex(debug=True,debuglog=log)
-#Lee el archivo source.txt y retorne los tokens
 
-'''
-print("---------------------------------------\n")
-print("---------A L G    # 1------------------\n")
+# Funcion del analizador lexico 
+toks=[]
+def analyze(data):
+    lexer.input(data)
 
-with open("source.txt", "r") as archivo:
-  lexer.input(archivo.read())
-  archivo.seek(0)
-  for linea in archivo:
     while True:
-      tok = lexer.token()
-      if not tok:
-        break  # No more input
-      print(tok)
+        tok = lexer.token()
+        if not tok:
+            break  # No more input
+        toks.append(str(tok))
 
-
-print("---------------------------------------\n")
-print("---------ALGORITMO #2------------------\n")
-
-with open("source2.txt", "r") as archivo:
-  lexer.input(archivo.read())
-  archivo.seek(0)
-  for linea in archivo:
-    while True:
-      tok = lexer.token()
-      if not tok:
-        break  # No more input
-      print(tok) '''
+def leerAlgoritmoLexico(entrada):
+    toks.clear()
+    lineas = entrada.split("\n")
+    for line in lineas:
+        analyze(line)
+        if len(line) == 0:
+            break
+    return toks

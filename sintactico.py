@@ -289,17 +289,10 @@ def p_error(p):
     print(resultado)
     resultado_sintactico.append(resultado)
 
+entradaGUI = []
+
 #BUILD THE PARSER 
 parser = yacc.yacc(debug=True,debuglog=log)
 
-def validaRegla(s):
-  result = parser.parse(s)
-  print(result)
 
-while True:
-  try:
-    s = input('analizador > ')
-  except EOFError:
-    break
-  if not s: continue
-  validaRegla(s)
+
