@@ -298,15 +298,14 @@ def leerAlgoritmoSintactico(entrada):
   entradaGUI.clear()
   lineas = entrada.split("\n")
   for line in lineas:
-    if line != "\n":
-      if line[:3] == "for" or line[:3] == "def" or line[:5] == "while" or line[:2] == "if":
-                nLine = line.replace("\n", "")
-                for Eline in entrada:
-                    nLine += " " + Eline.replace("\n", "").replace("\t", "")
-                    if Eline[:3] == "end":
-                        break
-                line = nLine
-      entradaGUI.append(line)
-      parser.parse(line)
-    return entradaGUI
+    if line[:3] == "for" or line[:3] == "def" or line[:5] == "while" or line[:2] == "if":
+              nLine = line.replace("\n", "")
+              for Eline in entrada:
+                  nLine += " " + Eline.replace("\n", "").replace("\t", "")
+                  if Eline[:3] == "end":
+                      break
+              line = nLine
+    entradaGUI.append(line)
+    parser.parse(line)
+  return entradaGUI
 

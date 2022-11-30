@@ -126,7 +126,6 @@ lexer = lex.lex(debug=True,debuglog=log)
 toks=[]
 def analyze(data):
     lexer.input(data)
-    
     while True:
         tok = lexer.token()
         if not tok:
@@ -134,13 +133,10 @@ def analyze(data):
         toks.append(str(tok))
 
 def leerAlgoritmoLexico(entrada):
-    print(entrada)
     toks.clear()
     lineas = entrada.split("\n")
-    print(lineas)
     for line in lineas:
         analyze(line)
-    print(toks)
     return toks
 
 
