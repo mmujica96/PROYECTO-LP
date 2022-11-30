@@ -278,14 +278,25 @@ def p_library_path(p):
   """library_path : ID 
                   | ID TURBO_FISH library_path"""
 
+
+## ********************SEMANTICAS ***************
+#MICHELLE MUJICA
+def p_operacionAritNumeros(p):
+  'operacionAritNumeros : valor_numerico repite_operacionAritNumeros'
+
+def p_repite_operacionAritNumeros(p):
+    '''repite_operacionAritNumeros : operaciones valor_numerico
+                              | operaciones valor_numerico repite_operacionAritNumeros
+    '''
+
 ##MANEJADOR DE ERRORES 
 def p_error(p):
   if p:
-    resultado = "Error Sintactico de tipo: {} en el valor: {}".format(
+    resultado = "Error Sintactico del token de tipo: {} , en el valor: {}".format(
       str(p.type), str(p.value))
     print(resultado)
   else:
-    resultado = "Error sintactico: {}".format(p)
+    resultado = "Error de sintaxis: {}".format(p)
     print(resultado)
     
 
