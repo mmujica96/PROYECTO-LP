@@ -115,8 +115,10 @@ def t_newline(t):
 t_ignore = (' \n')
 
 #Agregue token de error
+error=[]
 def t_error(t):
-  print("Illegal character '%s'" % t.value[0])
+  error.append(f"LexToken(Caracter no reconocido,{t.value[0]},{t.lineno},{t.lineno})")
+  print("Caracter no reconocido '%s'" % t.value[0])
   t.lexer.skip(1)
 
 #Construya el lexer
@@ -126,16 +128,22 @@ lexer = lex.lex(debug=True,debuglog=log)
 toks=[]
 def analyze(data):
     lexer.input(data)
-    
+
     while True:
         tok = lexer.token()
         if not tok:
             break  # No more input
         toks.append(str(tok))
+    #agrega token no definidos
+    if len(error)> 0:
+        for er in error:
+          toks.append(er)
+    return toks
 
 def leerAlgoritmoLexico(entrada):
     print(entrada)
     toks.clear()
+    error.clear()
     lineas = entrada.split("\n")
     print(lineas)
     for line in lineas:
