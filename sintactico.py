@@ -1,13 +1,15 @@
+import datetime
 import ply.yacc as yacc
 from lexico import tokens
 import logging
+from datetime import datetime
 
 
 logging.basicConfig(
     level = logging.DEBUG,
     filename = "parselog.txt",
     filemode = "w",
-    format = "%(filename)10s:%(lineno)4d:%(message)s"
+    format = "%(asctime)s:%(filename)10s:%(lineno)4d:%(message)s"
 )
 log = logging.getLogger()
 
@@ -295,12 +297,15 @@ entradaGUI = []
 
 def p_error(p):
   if p:
-    resultado = "Error Sintactico del token de tipo: {} , en el valor: {}".format(
+    resultado = "{} - Error Sintactico del token de tipo: {} , en el valor: {}".format(str((datetime.now()).strftime("%Y-%m-%d %H:%M:%S")),
       str(p.type), str(p.value))
     entradaGUI.append(resultado)
   else:
     resultado = "Error de sintaxis: {}".format(p)
     entradaGUI.append(resultado)
+
+#LOG
+
 
 #BUILD THE PARSER 
 parser = yacc.yacc(debug=True,debuglog=log)
