@@ -134,10 +134,13 @@ def analyze(data):
         toks.append(str(tok))
 
 def leerAlgoritmoLexico(entrada):
+    print(entrada)
     toks.clear()
     lineas = entrada.split("\n")
+    print(lineas)
     for line in lineas:
         analyze(line)
-        if len(line) == 0:
-            break
+    print(toks)
     return toks
+
+

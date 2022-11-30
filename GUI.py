@@ -42,10 +42,9 @@ def sintacticoButton():
     for line in result:
         if line != None:
             lineasresultantes = lineasresultantes + line + "\n"
-
+    text_code.delete('1.0', END)
     text_code.insert("1.0", lineasresultantes)
-    text_code.configure(state="disabled")
-
+    
 def semanticoButton():
     print("SEMANTICO")
 
