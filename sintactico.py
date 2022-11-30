@@ -290,17 +290,17 @@ def p_repite_operacionAritNumeros(p):
     '''
 
 ##MANEJADOR DE ERRORES 
+
+entradaGUI = []
+
 def p_error(p):
   if p:
     resultado = "Error Sintactico del token de tipo: {} , en el valor: {}".format(
       str(p.type), str(p.value))
-    print(resultado)
+    entradaGUI.append(resultado)
   else:
     resultado = "Error de sintaxis: {}".format(p)
-    print(resultado)
-    
-
-entradaGUI = []
+    entradaGUI.append(resultado)
 
 #BUILD THE PARSER 
 parser = yacc.yacc(debug=True,debuglog=log)
@@ -309,14 +309,6 @@ def leerAlgoritmoSintactico(entrada):
   entradaGUI.clear()
   lineas = entrada.split("\n")
   for line in lineas:
-    if line[:3] == "for" or line[:3] == "def" or line[:5] == "while" or line[:2] == "if":
-              nLine = line.replace("\n", "")
-              for Eline in entrada:
-                  nLine += " " + Eline.replace("\n", "").replace("\t", "")
-                  if Eline[:3] == "end":
-                      break
-              line = nLine
-    entradaGUI.append(line)
     parser.parse(line)
   return entradaGUI
 
